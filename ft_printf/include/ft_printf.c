@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:44:48 by yutsong           #+#    #+#             */
-/*   Updated: 2024/04/29 19:00:56 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/05/01 16:09:16 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 #include <stdio.h>
 
 // #include "ft_printf.h"
+
+static void writer(int c)
+{
+	write(1, &c, 1);
+}
 
 static int print_c(va_list args)
 {
@@ -59,8 +64,46 @@ static int print_num(int num)
 		print_num(num / 10);
 	}
 	idx ++;
-	write(1, &"0123456789"[num % 10], 1);
+	// printf("%c", "0123456789"[num%10]);
+	// write(1, &"0123456789"[num % 10], 1);
+	// writer(num % 10);
+	writer("0123456789"[num % 10]);
 	return (idx);
+}
+
+// static void dptest(int num)
+// {
+// 	if (num > 9)
+// 		dptest(num / 10);
+// 	writer(num % 10);
+// 	// printf("%d", num % 10);
+// }
+
+static void	ft_putchar(char c) {
+	write(1, &c, 1);
+}
+
+static void	dptest(int nb) {
+	if (nb < 0) {
+		ft_putchar('-');
+		nb = -nb;
+	}
+	if (nb >= 10) {
+		dptest(nb / 10);
+		nb = nb % 10;
+	}
+	if (nb < 10) ft_putchar(nb + 48);
+}
+
+static int dtest(va_list args)
+{
+	int idx;
+	int num;
+
+	idx = 0;
+	num = va_arg(args, int);
+	// printf("%d", num);
+	dptest(num);
 }
 
 static int print_d(va_list args)
@@ -86,25 +129,45 @@ static int print_d(va_list args)
 	return (idx);	
 }
 
+static int putptr(unsigned long long ptr)
+{
+	int idx;
+
+	idx = 0;
+	if (ptr >= 16)
+	{
+		putptr(ptr / 16);
+		putptr(ptr % 16);
+		idx ++;
+	}
+	else
+	{
+		if (ptr < 10)
+			// write(1, (char)('0' + ptr), 1);
+			writer(('0' + ptr));
+		else
+			// write(1, (char)(ptr - 10 + 'a'), 1);
+			writer(ptr - 10 + 'a');
+		idx ++;
+	}
+	return (idx);
+}
+
 static int print_p(va_list args)
 {
 	unsigned long long ptr;
 	int idx;
-	int *idxptr;
 
 	idx = 0;
 	ptr = va_arg(args, unsigned long long);
 	idx += 2;
-	printf("%d", 99);
-	// write(1, "0x", 2);
-
+	write(1, "0x", 2);
+	idx += putptr(ptr);
 	return (idx);
+	// printf("%d", 99);
 }
 
-
-
 static int print_i(va_list args);
-static int print_u(va_list args);
 
 static int		check_base(char *base)
 {
@@ -159,7 +222,8 @@ static int print_xx(va_list args, char *base)
 			i++;
 		}
 		while (--i >= 0)
-			write(1, &base[nbr_final[i]], 1);
+			// write(1, &base[nbr_final[i]], 1);
+			writer(base[nbr_final[i]]);
 	}
 }
 
@@ -175,8 +239,9 @@ static int type_selecter(const char *format, va_list args)
 
 	i = 0;
 	if (*format == 'd')
-		i += printf("%d", va_arg(args, int));
+		// i += printf("%d", va_arg(args, int));
 		// i += print_d(args);
+		i += dtest(args);
 	else if (*format == 's')
 		i += print_s(args);
 	else if (*format == 'c')
@@ -185,14 +250,16 @@ static int type_selecter(const char *format, va_list args)
 		// i += printf("%p", va_arg(args, void *));
 		i += print_p(args);
 	else if (*format == 'i')
-		i += printf("%i", va_arg(args, int));
+		// i += printf("%i", va_arg(args, int));
+		i += print_d(args);
 	else if (*format == 'u')
-		i += printf("%u", va_arg(args, unsigned int));
+		// i += printf("%u", va_arg(args, unsigned int));
+		i += print_xx(args, "0123456789");
 	else if (*format == 'x')
-		i+= print_xx(args, "0123456789abcdef");
+		i += print_xx(args, "0123456789abcdef");
 		// i += printf("%x", va_arg(args, unsigned int));
 	else if (*format == 'X')
-		i+= print_xx(args, "0123456789ABCDEF");
+		i += print_xx(args, "0123456789ABCDEF");
 		// i += printf("%X", va_arg(args, unsigned int));	
 	else if (*format == '%')
 		i += print_percent();	
@@ -212,8 +279,8 @@ int	ft_printf(const char *format, ...)
 		{
 			format ++;
 			flag += type_selecter(format, args);
-			write(1, " ", 1);
-			printf(" ");
+			write(1, "\n", 1);
+			// printf("\n");
 		}
 		format ++;
 	}
@@ -221,8 +288,9 @@ int	ft_printf(const char *format, ...)
 	return (flag);
 }
 
-int main(void)
-{
-	printf("%d", ft_printf("%d %s %c %p %i %u %x %X %%", 10, "string", 'a', "ww", 20, 30, 40, 50));
-	return (0);
-}
+// int main(void)
+// {
+// 	ft_printf("%d %s %c %p %i %u %x %X %%", 10, "string", 'a', "ww", 20, 30, 40, 50);
+// 	// printf("%d", ft_printf("%d %s %c %p %i %u %x %X %%", 10, "string", 'a', "ww", 20, 30, 40, 50));
+// 	return (0);
+// }
