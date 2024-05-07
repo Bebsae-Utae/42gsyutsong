@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:43:00 by yutsong           #+#    #+#             */
-/*   Updated: 2024/05/02 13:43:42 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/05/07 14:04:53 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	print_c(va_list args)
 {
-	int data;
+	int	data;
 
 	data = va_arg(args, int);
 	write(1, &data, 1);

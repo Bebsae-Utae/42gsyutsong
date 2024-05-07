@@ -6,13 +6,13 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:38:21 by yutsong           #+#    #+#             */
-/*   Updated: 2024/05/02 13:43:45 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/05/07 14:04:10 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_percent()
+int	print_percent(void)
 {
 	write(1, "%", 1);
 	return (1);

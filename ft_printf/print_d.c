@@ -6,55 +6,51 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:54:41 by yutsong           #+#    #+#             */
-/*   Updated: 2024/05/02 16:00:39 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/05/07 14:06:38 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr_fd(int n)
+void	ft_putnbr_fd(int n, int fd)
 {
 	if (n == -2147483648)
+		write(fd, "-2147483648", 11);
+	else if (n < 0)
 	{
-		ft_putchar('-');
-		ft_putchar('2');
-		ft_putnbr_fd(147483648);
-		return ;
+		write(fd, "-", 1);
+		ft_putnbr_fd((-n), fd);
 	}
-	if (n < 0)
+	else if (n < 10 && n >= 0)
+		ft_putchar(n + '0');
+	else if (n > 0)
 	{
-		ft_putchar('-'),
-		n = -n;
+		ft_putnbr_fd(n / 10, fd);
+		ft_putchar(n % 10 + '0');
 	}
-	if (n > 9)
-	{
-		ft_putnbr_fd(n / 10);
-		ft_putchar((n % 10) + 48);
-		return ;
-	}
-	ft_putchar(n + 48);
 }
-
 
 int	print_d(va_list args)
 {
-	int				nb;
-	unsigned int	i;
+	int	nb;
+	int	temp_nb;
+	int	idx;
 
 	nb = va_arg(args, int);
-	i = 1;
-	if (nb < 0 && nb != -2147483648)
-	{
-		nb = -nb;
-		i++;
-	}
-	while (nb > 9)
-	{
-		nb = nb / 10;
-		i++;
-	}
-	ft_putnbr_fd(nb);
-	if (nb == -2147483648)
+	temp_nb = nb;
+	idx = 1;
+	ft_putnbr_fd(nb, 1);
+	if (temp_nb == -2147483648)
 		return (11);
-	return (i);
+	if (temp_nb < 0)
+	{
+		temp_nb *= (-1);
+		idx ++;
+	}
+	while (temp_nb > 9)
+	{
+		temp_nb /= 10;
+		idx++;
+	}
+	return (idx);
 }

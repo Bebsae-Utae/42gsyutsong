@@ -6,37 +6,31 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:48:06 by yutsong           #+#    #+#             */
-/*   Updated: 2024/05/02 15:48:56 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/05/07 14:06:27 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	printout(unsigned int nb)
+void	put_nbr_unsigned(unsigned int num)
 {
-	if (nb > 9)
+	if (num > 9)
+		put_nbr_unsigned(num / 10);
+	if (num <= 9)
 	{
-		printout(nb);
-		while (nb > 9)
-		{
-			nb = nb / 10;
-		}
-	}
-	if (nb <= 9)
-	{
-		ft_putchar(nb + 48);
+		ft_putchar(num + 48);
 		return ;
 	}
-	ft_putchar((nb % 10) + 48);
+	ft_putchar((num % 10) + 48);
 }
 
-int print_u(va_list args)
+int	print_u(va_list args)
 {
-	int idx;
-	unsigned int num;
+	int				idx;
+	unsigned int	num;
 
 	num = va_arg(args, unsigned int);
-	printout(num);
+	put_nbr_unsigned(num);
 	idx = 1;
 	while (num > 9)
 	{
