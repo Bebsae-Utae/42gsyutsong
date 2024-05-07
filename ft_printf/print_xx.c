@@ -1,45 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   print_xx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 13:51:27 by yutsong           #+#    #+#             */
-/*   Updated: 2024/05/07 14:43:32 by yutsong          ###   ########.fr       */
+/*   Created: 2024/05/07 14:41:12 by yutsong           #+#    #+#             */
+/*   Updated: 2024/05/07 14:41:14 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c)
+int	print_xx(va_list args, char c)
 {
-	write(1, &c, 1);
-}
+	unsigned long long	ptr;
+	int					idx;
 
-int	putptr(unsigned long long ptr, int idx, char c)
-{
-	unsigned long long	temp;
-
-	if (ptr >= 16)
+	idx = 0;
+	ptr = va_arg(args, unsigned long long);
+	if (!ptr)
 	{
-		putptr(ptr / 16, idx, c);
-		putptr(ptr % 16, idx, c);
-		idx ++;
+		write(1, "0", 1);
+		return (1);
 	}
-	else
+	putptr(ptr, idx, c);
+	while (ptr != 0)
 	{
-		if (ptr < 10)
-		{
-			temp = '0' + ptr;
-			ft_putchar(temp);
-		}
-		else
-		{
-			temp = ptr - 10 + c;
-			ft_putchar(temp);
-		}
 		idx ++;
+		ptr /= 16;
 	}
 	return (idx);
 }

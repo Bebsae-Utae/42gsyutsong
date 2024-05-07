@@ -6,13 +6,13 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:48:06 by yutsong           #+#    #+#             */
-/*   Updated: 2024/05/07 14:06:27 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/05/07 14:45:45 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	put_nbr_unsigned(unsigned int num)
+static void	put_nbr_unsigned(unsigned int num)
 {
 	if (num > 9)
 		put_nbr_unsigned(num / 10);

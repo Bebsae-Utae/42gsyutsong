@@ -6,7 +6,7 @@
 #    By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 16:08:27 by yutsong           #+#    #+#              #
-#    Updated: 2024/05/02 16:00:20 by yutsong          ###   ########.fr        #
+#    Updated: 2024/05/07 14:39:50 by yutsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRCS		= ft_printf.c \
 				print_c.c \
 				print_p.c \
 				print_u.c \
-				print_d.c
+				print_d.c \
+				print_xx.c
 OBJS		= $(SRCS:%.c=%.o)
 
 all:		$(NAME)
@@ -37,7 +38,6 @@ fclean:		clean
 
 re:			fclean all
 
-# $(NAME):	$(OBJS) ${INCLUDES}
 $(NAME):	$(OBJS)
 			ar -crs ${NAME} ${OBJS}
 
