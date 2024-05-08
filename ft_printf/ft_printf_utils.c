@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:51:27 by yutsong           #+#    #+#             */
-/*   Updated: 2024/05/07 14:43:32 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/05/08 10:42:27 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,14 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-int	putptr(unsigned long long ptr, int idx, char c)
+void	putptr(unsigned long long ptr, char c)
 {
 	unsigned long long	temp;
 
 	if (ptr >= 16)
 	{
-		putptr(ptr / 16, idx, c);
-		putptr(ptr % 16, idx, c);
-		idx ++;
+		putptr(ptr / 16, c);
+		putptr(ptr % 16, c);
 	}
 	else
 	{
@@ -39,7 +38,5 @@ int	putptr(unsigned long long ptr, int idx, char c)
 			temp = ptr - 10 + c;
 			ft_putchar(temp);
 		}
-		idx ++;
 	}
-	return (idx);
 }

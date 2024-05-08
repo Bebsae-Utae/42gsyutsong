@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 14:00:20 by yutsong           #+#    #+#             */
-/*   Updated: 2024/05/07 14:28:36 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/05/08 10:40:57 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	print_p(va_list args)
 	}
 	write(1, "0x", 2);
 	idx += 2;
-	putptr(ptr, idx, 'a');
+	putptr(ptr, 'a');
 	while (ptr != 0)
 	{
 		idx ++;

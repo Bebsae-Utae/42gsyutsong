@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:47:33 by yutsong           #+#    #+#             */
-/*   Updated: 2024/05/07 14:46:48 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/05/08 11:13:39 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int		print_xx(va_list args, char c);
 
 int		ft_printf(const char *input, ...);
 void	ft_putchar(char c);
-int		putptr(unsigned long long ptr, int idx, char c);
+void	putptr(unsigned long long ptr, char c);
 
 #endif
