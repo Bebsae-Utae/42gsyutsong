@@ -23,6 +23,10 @@ typedef struct s_param
 	int		count_work;
 	char	*mapdata;
 	char	*newmap;
+	int		cnt_dorong;
+	int		cnt_item;
+	int		cnt_door;
+	int		get_item;
 }	t_param;
 
 #define KEY_ESC				65307
@@ -49,6 +53,10 @@ void set_param(t_param *par)
 	par->win_width = 0;
 	par->win_height = 0;
 	par->count_work = 0;
+	par->cnt_door = 0;
+	par->cnt_dorong = 0;
+	par->cnt_item = 0;
+	par->get_item = 0;
 	par->mapdata = "111111111110P1C01E111011101001100110110111000000011111111111";
 }
 
@@ -206,6 +214,9 @@ void check_map(t_param *par)
 		write(1, "No Player.\n", 11);
 	else if (cnt_item == 0)
 		write(1, "No Item.\n", 9);
+	par->cnt_door = cnt_door;
+	par->cnt_dorong = cnt_dorong;
+	par->cnt_item = cnt_item;
 }
 
 int	exit_btn(t_param *par)
@@ -214,40 +225,92 @@ int	exit_btn(t_param *par)
 	exit(0);
 }
 
-int closers(int keycode, t_param *par)
+void move_a(t_param *par)
 {
-	if (keycode == KEY_A)
+	find_dorong(par);
+	if (par->newmap[par->where_dorong - 1] == 'E' && par->get_item == par->cnt_item)
 	{
+		mlx_destroy_window(par->mlx, par->win);
+		exit(0);
+	}
+	else if (par->newmap[par->where_dorong - 1] != '1')
+	{
+		if (par->newmap[par->where_dorong - 1] == 'C')
+			par->get_item = 1;
 		mlx_clear_window(par->mlx, par->win);
-		find_dorong(par);
 		par->newmap[par->where_dorong] = '0';
 		par->newmap[par->where_dorong - 1] = 'P';
 		draw_map(par);
 	}
-	else if (keycode == KEY_D)
+}
+
+void move_d(t_param *par)
+{
+	find_dorong(par);
+	if (par->newmap[par->where_dorong + 1] == 'E' && par->get_item == par->cnt_item)
 	{
+		mlx_destroy_window(par->mlx, par->win);
+		exit(0);
+	}
+	else if (par->newmap[par->where_dorong + 1] != '1')
+	{
+		if (par->newmap[par->where_dorong + 1] == 'C')
+			par->get_item = 1;
 		mlx_clear_window(par->mlx, par->win);
-		find_dorong(par);
 		par->newmap[par->where_dorong] = '0';
 		par->newmap[par->where_dorong + 1] = 'P';
 		draw_map(par);
 	}
-	else if (keycode == KEY_S)
+}
+
+void move_s(t_param *par)
+{
+	find_dorong(par);
+	if (par->newmap[par->where_dorong + par->win_width] == 'E' && par->get_item == par->cnt_item)
 	{
+		mlx_destroy_window(par->mlx, par->win);
+		exit(0);
+	}
+	else if (par->newmap[par->where_dorong + par->win_width] != '1')
+	{
+		if (par->newmap[par->where_dorong + par->win_width] == 'C')
+			par->get_item = 1;
 		mlx_clear_window(par->mlx, par->win);
-		find_dorong(par);
 		par->newmap[par->where_dorong] = '0';
 		par->newmap[par->where_dorong + par->win_width] = 'P';
 		draw_map(par);
 	}
-	else if (keycode == KEY_W)
+}
+
+void move_w(t_param *par)
+{
+	find_dorong(par);
+	if (par->newmap[par->where_dorong - par->win_width] == 'E' && par->get_item == par->cnt_item)
 	{
-		mlx_clear_window(par->mlx, par->win);
-		find_dorong(par);
+		mlx_destroy_window(par->mlx, par->win);
+		exit(0);
+	}
+	else if (par->newmap[par->where_dorong - par->win_width] != '1')
+	{
+		if (par->newmap[par->where_dorong - par->win_width] == 'C')
+			par->get_item = 1;
+		mlx_clear_window(par->mlx, par->win);		
 		par->newmap[par->where_dorong] = '0';
 		par->newmap[par->where_dorong - par->win_width] = 'P';
 		draw_map(par);
 	}
+}
+
+int closers(int keycode, t_param *par)
+{
+	if (keycode == KEY_A)
+		move_a(par);
+	else if (keycode == KEY_D)
+		move_d(par);
+	else if (keycode == KEY_S)
+		move_s(par);
+	else if (keycode == KEY_W)
+		move_w(par);
 	return 0;
 }
 
@@ -258,7 +321,8 @@ int main(void)
 	set_param(&par);
 	par.win = mlx_new_window(par.mlx, 640, 384, "dorong");
 	read_map(&par);
-	// draw_map(&par);
+	check_map(&par);
+	check_wall(&par);
 	mlx_hook(par.win, 2, 1L << 0, &closers, &par);
 	mlx_hook(par.win, 17, 1L << 17, &exit_btn, &par);
 	mlx_loop(par.mlx);
