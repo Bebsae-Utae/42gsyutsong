@@ -1,0 +1,73 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/30 13:25:24 by yutsong           #+#    #+#             */
+/*   Updated: 2024/05/30 16:53:43 by yutsong          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef SO_LONG_H
+# define SO_LONG_H
+
+# include "minilibx-linux/mlx.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+
+# define KEY_ESC			65307
+# define KEY_W				119
+# define KEY_S				115
+# define KEY_A				97
+# define KEY_D				100
+
+typedef struct s_param
+{
+	size_t	fd;
+	void	*mlx;
+	void	*win;
+	int		win_width;
+	int		win_height;
+	int		x;
+	int		y;
+	void	*dorong;
+	void	*tree;
+	void	*tile;
+	void	*item;
+	void	*door;
+	int		where_dorong;
+	int		width;
+	int		height;
+	char	*mapdata;
+	char	*newmap;
+	int		cnt_dorong;
+	int		cnt_item;
+	int		cnt_door;
+	int		cnt_work;
+	int		get_item;
+}	t_param;
+
+void    set_param(t_param *par);
+void    find_dorong(t_param *par);
+int     draw_map(t_param *par);
+void    make_map(t_param *par, char *mapdatas);
+void    read_map(t_param *par);
+void    check_wall(t_param *par);
+void    check_map(t_param *par);
+int     push_btn(int keycode, t_param *par);
+void    move_w(t_param *par);
+void    move_a(t_param *par);
+void    move_s(t_param *par);
+void    move_d(t_param *par);
+int     exit_btn(t_param *par);
+int     ft_strlen(char *newmap);
+int		clear_game(t_param *par);
+char	*int_to_char(long num);
+char	*reverse_str(char *str);
+int		num_len(long num);
+void	printer(t_param *par);
+
+#endif
