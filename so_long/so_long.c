@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:32:31 by yutsong           #+#    #+#             */
-/*   Updated: 2024/05/30 16:54:16 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/03 15:43:00 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_strlen(char *newmap)
 	return (len);
 }
 
-int num_len(long num)
+int	num_len(long num)
 {
 	int	len;
 
@@ -74,7 +74,6 @@ char	*int_to_char(long num)
 	if (!str)
 		return (NULL);
 	nb = num;
-	idx = 0;
 	if (num == 0)
 		str[idx ++] = '0';
 	if (num < 0)
@@ -91,13 +90,22 @@ char	*int_to_char(long num)
 	return (str);
 }
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	t_param	par;
+	int		fd;
 
+	if (argc != 2)
+	{
+		print_error(6);
+		return (0);
+	}
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		print_error(7);
 	set_param(&par);
 	par.win = mlx_new_window(par.mlx, 640, 384, "dorong");
-	read_map(&par);
+	read_map(&par, fd);
 	check_map(&par);
 	check_wall(&par);
 	mlx_hook(par.win, 2, 1L << 0, &push_btn, &par);

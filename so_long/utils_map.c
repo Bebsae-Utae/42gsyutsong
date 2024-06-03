@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:32:53 by yutsong           #+#    #+#             */
-/*   Updated: 2024/05/30 13:54:16 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/03 15:54:39 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,20 @@ void	make_map(t_param *par, char *mapdatas)
 	draw_map(par);
 }
 
-void	read_map(t_param *par)
+void	read_map(t_param *par, int fd)
 {
-	char	*mapdatas = "1111111111\n10P1C01E11\n1011101001\n1001101101\n1100000001\n1111111111";
+	// char	*mapdatas = "1111111111\n10P1C01E11\n1011101001\n1001101101\n1100000001\n1111111111";
 	// char *mapdatas = "1111111111\n1000000001\n1011101001\n1001101101\n1100000001\n1111111111";
 	int		idx;
+	char	*mapdatas;
+	char	*line;
+
+	/////////////////////////////
+	// mapdatas에 지도데이터 집어넣기
+	line = get_next_line(fd);
+	ft_strjoin(mapdatas, line);
+	write(1, &mapdatas, 12);
+	/////////////////////////////
 
 	idx = 0;
 	while (mapdatas[idx])
@@ -94,13 +103,13 @@ void	check_wall(t_param *par)
 	{
 		if (idx < par->win_width)
 			if (par->newmap[idx] != '1')
-				write(1, "Not Surrounded.\n", 16);
+				print_error(1);
 		else if (idx % par->win_width == 0 || idx % par->win_width == par->win_width - 1)
 			if (par->newmap[idx] != '1')
-				write(1, "Not Surrounded.\n", 16);
+				print_error(1);
 		else if (idx > ft_strlen(par->newmap) - par->win_width)
 			if (par->newmap[idx] != '1')
-				write(1, "Not Surrounded.\n", 16);
+				print_error(1);
 		idx ++;
 	}
 }
@@ -118,7 +127,7 @@ void	check_map(t_param *par)
 	cnt_item = 0;
 	cnt_door = 0;
 	if ((par->win_height + 1) * par->win_width != ft_strlen(par->newmap))
-		write(1, "Not Rectangle.\n", 15);
+		print_error(2);
 	while (idx ++ < ft_strlen(par->newmap))
 	{
 		if (par->newmap[idx] == 'E')
@@ -129,11 +138,11 @@ void	check_map(t_param *par)
 			cnt_item ++;
 	}
 	if (cnt_door == 0)
-		write(1, "No Exit.\n", 9);
+		print_error(3);
 	else if (cnt_dorong != 1)
-		write(1, "No Player.\n", 11);
+		print_error(4);
 	else if (cnt_item == 0)
-		write(1, "No Item.\n", 9);
+		print_error(5);
 	par->cnt_door = cnt_door;
 	par->cnt_dorong = cnt_dorong;
 	par->cnt_item = cnt_item;
