@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:25:24 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/03 14:50:32 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/04 14:44:10 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_param
 	int		where_dorong;
 	int		width;
 	int		height;
-	char	*mapdata;
+	char	*mapdatas;
 	char	*newmap;
 	int		cnt_dorong;
 	int		cnt_item;
@@ -53,26 +53,34 @@ typedef struct s_param
 
 void    set_param(t_param *par);
 void    find_dorong(t_param *par);
+
 int     draw_map(t_param *par);
-void    make_map(t_param *par, char *mapdatas);
-void    read_map(t_param *par, int fd);
+void    make_map(t_param *par);
+void    read_map(t_param *par, char *argv);
 void    check_wall(t_param *par);
 void    check_map(t_param *par);
+
 int     push_btn(int keycode, t_param *par);
 void    move_w(t_param *par);
 void    move_a(t_param *par);
 void    move_s(t_param *par);
 void    move_d(t_param *par);
+
 int     exit_btn(t_param *par);
-int     ft_strlen(char *newmap);
 int		clear_game(t_param *par);
+
+int     ft_strlen(char *newmap);
 char	*int_to_char(long num);
 char	*reverse_str(char *str);
 int		num_len(long num);
+
 void	printer(t_param *par);
 void	print_error(int codes);
+
 char	*get_next_line(int fd);
+
 char	*ft_strchr(const char *str, int c);
 char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strcat(char *dest, char *src);
 
 #endif

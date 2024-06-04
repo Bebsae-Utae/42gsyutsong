@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:32:53 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/03 15:55:18 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/04 16:07:12 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	draw_map(t_param *par)
 	}
 }
 
-void	make_map(t_param *par, char *mapdatas)
+void	make_map(t_param *par)
 {
 	int	idx1;
 	int	idx2;
@@ -46,52 +46,65 @@ void	make_map(t_param *par, char *mapdatas)
 
 	idx1 = 0;
 	idx2 = 0;
-	len = ft_strlen(mapdatas);
-	len = len - par->win_height;
+	len = ft_strlen(par->mapdatas);
+	write(1, "------\n", 7);
+	write(1, "makemap\n", 9);
+	write(1, int_to_char(len), 2);
+	write(1, "\n", 1);
+	write(1, "------\n", 7);
+	// len = len - par->win_height;
 	par->newmap = (char *)malloc(sizeof(char) * len + 1);
-	while (mapdatas[idx1])
+	while (par->mapdatas[idx1])
 	{
-		if (mapdatas[idx1] == '\n')
+		if (par->mapdatas[idx1] == '\n')
 			idx1 ++;
-		par->newmap[idx2] = mapdatas[idx1];
+		par->newmap[idx2] = par->mapdatas[idx1];
 		idx1 ++;
 		idx2 ++;
 	}
 	par->newmap[idx2] = '\0';
-	draw_map(par);
 }
 
-void	read_map(t_param *par, int fd)
+void	read_map(t_param *par, char *argv)
 {
-	// char	*mapdatas = "1111111111\n10P1C01E11\n1011101001\n1001101101\n1100000001\n1111111111";
-	// char *mapdatas = "1111111111\n1000000001\n1011101001\n1001101101\n1100000001\n1111111111";
-	int		idx;
-	char	*mapdatas;
 	char	*line;
+	char	*line0;
+	int		fd;
+	int		len;
 
-	/////////////////////////////
-	// mapdatas에 지도데이터 집어넣기
-	line = get_next_line(fd);
-	ft_strjoin(mapdatas, line);
-	write(1, &mapdatas, 12);
-	/////////////////////////////
-
-	idx = 0;
-	while (mapdatas[idx])
+	len = 0;
+	fd = open(argv, O_RDONLY);
+	if (fd == -1)
+		print_error(7);
+	while (line0)
 	{
-		if (mapdatas[idx] == '\n')
-			par->win_height ++;
-		idx ++;
-	}
-	idx = 0;
-	while (mapdatas[idx])
-	{
-		if (mapdatas[idx] == '\n')
+		line0 = get_next_line(fd);
+		len = ft_strlen(line0);
+		par->win_width = len;
+		par->win_height ++;
+		if (len == 10)
 			break ;
-		par->win_width ++;
-		idx ++;
 	}
-	make_map(par, mapdatas);
+	free(line0);
+	par->mapdatas = (char *)malloc(sizeof(char) * ((par->win_width * par->win_height) + 1));
+	// par->mapdatas[0] = '\0';
+	ft_strcat(par->mapdatas, "hello\n");
+	write(1, "------\n", 7);
+	write(1, "check\n", 6);
+	// par->mapdatas="hello\n";
+	write(1, par->mapdatas, 6);
+	write(1, "\n", 1);
+	write(1, "------\n", 7);
+	while(line)
+	{
+		line = get_next_line(fd);
+		if(line)
+			ft_strcat(par->mapdatas, line);
+		else
+			break ;
+	}
+	free(line);
+	close(fd);
 }
 
 void	check_wall(t_param *par)
@@ -126,8 +139,9 @@ void	check_map(t_param *par)
 	cnt_dorong = 0;
 	cnt_item = 0;
 	cnt_door = 0;
-	if ((par->win_height + 1) * par->win_width != ft_strlen(par->newmap))
+	if (par->win_height * par->win_width != ft_strlen(par->newmap))
 		print_error(2);
+	// write(1, "check\n", 6);
 	while (idx ++ < ft_strlen(par->newmap))
 	{
 		if (par->newmap[idx] == 'E')

@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:33:42 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/03 12:41:36 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/04 13:40:46 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void    set_param(t_param *par)
 	par->cnt_item = 0;
 	par->cnt_work = 0;
 	par->get_item = 0;
-	par->mapdata = "111111111110P1C01E111011101001100110110111000000011111111111";
 }
 
 void	find_dorong(t_param *par)
