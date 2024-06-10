@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:32:53 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/10 12:29:17 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/10 12:47:12 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	read_map(t_param *par, char *argv)
 			par->mapdatas = ft_strjoin(par->mapdatas, line);
 		par->win_height ++;
 	}
+	if (par->win_height < 3)
+		print_error(1, par);
 	free(line);
 	close(fd);
 }
