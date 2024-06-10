@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end_game.c                                         :+:      :+:    :+:   */
+/*   utils_map2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/30 15:28:09 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/10 11:57:45 by yutsong          ###   ########.fr       */
+/*   Created: 2024/06/10 12:20:53 by yutsong           #+#    #+#             */
+/*   Updated: 2024/06/10 12:23:15 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	exit_btn(t_param *par)
+void	check_map2(t_param *par, int dorong, int item, int door)
 {
-	mlx_destroy_window(par->mlx, par->win);
-	exit(0);
-}
-
-int	clear_game(t_param *par)
-{
-	mlx_destroy_window(par->mlx, par->win);
-	write(1, "congratulation!\n", 16);
-	exit(0);
+	if (door == 0)
+		print_error(3, par);
+	else if (dorong != 1)
+		print_error(4, par);
+	else if (item == 0)
+		print_error(5, par);
+	par->cnt_door = door;
+	par->cnt_dorong = dorong;
+	par->cnt_item = item;
 }

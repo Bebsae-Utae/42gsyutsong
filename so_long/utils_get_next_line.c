@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_get_line.c                                   :+:      :+:    :+:   */
+/*   utils_get_next_line.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:14:49 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/04 12:58:12 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/10 12:09:39 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,26 @@ char	*ft_strcat(char *dest, char *src)
 		dest[i++] = src[j++];
 	dest[i] = '\0';
 	return (dest);
+}
+
+char	*ft_strdup(char *s)
+{
+	int		i;
+	int		len;
+	char	*new_s;
+
+	i = 0;
+	len = 0;
+	while (s[len])
+		len++;
+	new_s = (char *)malloc(sizeof(char) * (len + 1));
+	if (!(new_s))
+		return (NULL);
+	while (s[i])
+	{
+		new_s[i] = s[i];
+		i++;
+	}
+	new_s[i] = '\0';
+	return (new_s);
 }

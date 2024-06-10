@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:36:54 by yutsong           #+#    #+#             */
-/*   Updated: 2024/05/30 16:54:06 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/10 12:05:01 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 void	move_a(t_param *par)
 {
 	find_dorong(par);
-	if (par->newmap[par->where_dorong - 1] == 'E' && par->get_item == par->cnt_item)
+	if (par->newmap[par->where_dorong - 1] == 'E'
+		&& par->get_item == par->cnt_item)
 	{
 		par->cnt_work ++;
 		clear_game(par);
 	}
-	else if (par->newmap[par->where_dorong - 1] != '1' && par->newmap[par->where_dorong - 1] != 'E')
+	else if (par->newmap[par->where_dorong - 1] != '1'
+		&& par->newmap[par->where_dorong - 1] != 'E')
 	{
 		par->cnt_work ++;
 		if (par->newmap[par->where_dorong - 1] == 'C')
@@ -36,12 +38,14 @@ void	move_a(t_param *par)
 void	move_d(t_param *par)
 {
 	find_dorong(par);
-	if (par->newmap[par->where_dorong + 1] == 'E' && par->get_item == par->cnt_item)
+	if (par->newmap[par->where_dorong + 1] == 'E'
+		&& par->get_item == par->cnt_item)
 	{
 		par->cnt_work ++;
 		clear_game(par);
 	}
-	else if (par->newmap[par->where_dorong + 1] != '1' && par->newmap[par->where_dorong + 1] != 'E')
+	else if (par->newmap[par->where_dorong + 1] != '1'
+		&& par->newmap[par->where_dorong + 1] != 'E')
 	{
 		par->cnt_work ++;
 		if (par->newmap[par->where_dorong + 1] == 'C')
@@ -57,12 +61,14 @@ void	move_d(t_param *par)
 void	move_s(t_param *par)
 {
 	find_dorong(par);
-	if (par->newmap[par->where_dorong + par->win_width] == 'E' && par->get_item == par->cnt_item)
+	if (par->newmap[par->where_dorong + par->win_width] == 'E'
+		&& par->get_item == par->cnt_item)
 	{
 		par->cnt_work ++;
 		clear_game(par);
 	}
-	else if (par->newmap[par->where_dorong + par->win_width] != '1' && par->newmap[par->where_dorong + par->win_width] != 'E')
+	else if (par->newmap[par->where_dorong + par->win_width] != '1'
+		&& par->newmap[par->where_dorong + par->win_width] != 'E')
 	{
 		par->cnt_work ++;
 		if (par->newmap[par->where_dorong + par->win_width] == 'C')
@@ -78,12 +84,14 @@ void	move_s(t_param *par)
 void	move_w(t_param *par)
 {
 	find_dorong(par);
-	if (par->newmap[par->where_dorong - par->win_width] == 'E' && par->get_item == par->cnt_item)
+	if (par->newmap[par->where_dorong - par->win_width] == 'E'
+		&& par->get_item == par->cnt_item)
 	{
 		par->cnt_work ++;
 		clear_game(par);
 	}
-	else if (par->newmap[par->where_dorong - par->win_width] != '1' && par->newmap[par->where_dorong - par->win_width] != 'E' )
+	else if (par->newmap[par->where_dorong - par->win_width] != '1'
+		&& par->newmap[par->where_dorong - par->win_width] != 'E' )
 	{
 		par->cnt_work ++;
 		if (par->newmap[par->where_dorong - par->win_width] == 'C')

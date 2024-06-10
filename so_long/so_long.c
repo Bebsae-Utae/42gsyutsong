@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:32:31 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/04 15:45:41 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/10 12:07:47 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,13 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		print_error(6);
+		print_error(6, &par);
 		return (0);
 	}
 	set_param(&par);
-	// par.win = mlx_new_window(par.mlx, 640, 384, "dorong");
-	// par.win = mlx_new_window(par.mlx, 1280, 720, "dorong");
-	// par.win = mlx_new_window(par.mlx, par.win_width * 64, par.win_height * 64, "dorong");
 	read_map(&par, argv[1]);
-	// par.win = mlx_new_window(par.mlx, 1280, 720, "dorong");
-	par.win = mlx_new_window(par.mlx, par.win_width * 64, par.win_height * 64, "dorong");
+	par.win = mlx_new_window(par.mlx,
+			par.win_width * 64, par.win_height * 64, "dorong");
 	make_map(&par);
 	check_map(&par);
 	check_wall(&par);
