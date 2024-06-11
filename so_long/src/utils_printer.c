@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printer.c                                          :+:      :+:    :+:   */
+/*   utils_printer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:51:13 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/10 12:20:02 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/11 16:15:31 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,10 @@ void	print_error(int codes, t_param *par)
 		write(1, "Cannot open map.\n", 17);
 	else if (codes == 7)
 		write(1, "File not exist.\n", 16);
+	else if (codes == 8)
+		write(1, "Incorrect Filename.\n", 20);
+	else if (codes == 9)
+		write(1, "Invalid Path.\n", 14);
+	exit(0);
 	exit_btn(par);
 }

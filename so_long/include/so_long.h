@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:25:24 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/11 13:02:14 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/11 18:52:03 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_param
 	int		cnt_door;
 	int		cnt_work;
 	int		get_item;
+	int		*visited;
 }	t_param;
 
 void	set_param(t_param *par);
@@ -62,6 +63,9 @@ void	check_map(t_param *par);
 
 void	check_map2(t_param *par, int dorong, int item, int door);
 void	check_rec(t_param *par);
+void	check_mapname(t_param *par, char *filename);
+int		dfs(t_param *par, int idx, int width, int height);
+int		valid_path(t_param *par);
 
 int		push_btn(int keycode, t_param *par);
 void	move_w(t_param *par);
@@ -86,5 +90,8 @@ char	*ft_strchr(const char *str, int c);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strcat(char *dest, char *src);
 char	*ft_strdup(char *s);
+char	*ft_strnstr(char *big, char *little, int len);
+
+void	*ft_memset(void *dest, int val, int n);
 
 #endif

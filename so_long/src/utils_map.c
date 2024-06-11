@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:32:53 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/11 13:05:26 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/11 18:34:04 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,4 +136,7 @@ void	check_map(t_param *par)
 			cnt_item ++;
 	}
 	check_map2(par, cnt_dorong, cnt_item, cnt_door);
+	find_dorong(par);
+	if (!valid_path(par))
+		print_error(9, par);
 }

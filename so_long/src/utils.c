@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:55:32 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/10 12:10:37 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/11 14:23:41 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,26 @@ char	*int_to_char(long num)
 	str[idx] = '\0';
 	str = reverse_str(str);
 	return (str);
+}
+
+char	*ft_strnstr(char *big, char *little, int len)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	if (*little == '\0')
+		return ((char *) big);
+	while (big[i] != '\0' && i < len)
+	{
+		j = 0;
+		while (big[i + j] == little[j] && i + j < len)
+		{
+			j++;
+			if (little[j] == '\0')
+				return ((char *)&big[i]);
+		}
+		i++;
+	}
+	return (0);
 }

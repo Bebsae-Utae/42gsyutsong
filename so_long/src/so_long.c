@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:32:31 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/11 11:48:43 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/11 14:24:35 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int argc, char *argv[])
 	par.win = mlx_new_window(par.mlx,
 			par.win_width * 64, par.win_height * 64, "dorong");
 	make_map(&par);
+	check_mapname(&par, argv[1]);
 	check_rec(&par);
 	check_map(&par);
 	check_wall(&par);

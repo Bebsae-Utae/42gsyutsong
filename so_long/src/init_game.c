@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:33:42 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/10 12:03:27 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/11 18:24:10 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,15 @@ void	set_param(t_param *par)
 void	find_dorong(t_param *par)
 {
 	int	idx;
-	int	here;
 
 	idx = 0;
-	here = 0;
 	while (par->newmap[idx])
 	{
 		if (par->newmap[idx] == 'P')
 		{
-			here = idx;
+			par->where_dorong = idx;
 			break ;
 		}
 		idx ++;
 	}
-	par->where_dorong = here;
 }
