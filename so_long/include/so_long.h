@@ -6,14 +6,14 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:25:24 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/10 12:23:41 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/11 13:02:14 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -54,13 +54,14 @@ typedef struct s_param
 void	set_param(t_param *par);
 void	find_dorong(t_param *par);
 
-int		draw_map(t_param *par);
+void	draw_map(t_param *par);
 void	make_map(t_param *par);
 void	read_map(t_param *par, char *argv);
 void	check_wall(t_param *par);
 void	check_map(t_param *par);
 
 void	check_map2(t_param *par, int dorong, int item, int door);
+void	check_rec(t_param *par);
 
 int		push_btn(int keycode, t_param *par);
 void	move_w(t_param *par);

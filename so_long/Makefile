@@ -6,7 +6,7 @@
 #    By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/21 14:54:53 by yutsong           #+#    #+#              #
-#    Updated: 2024/06/10 12:43:39 by yutsong          ###   ########.fr        #
+#    Updated: 2024/06/11 12:58:38 by yutsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,30 +15,32 @@ NAME		=	so_long
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 
-SRCS		=	./end_game.c
-				./get_next_line.c
-				./init_game.c
-				./move_dorong.c
-				./printer.c
-				./so_ling.c
-				./utils_get_next_line.c
-				./utils_map.c
-				./utils_map2.c
-				./utils.c
-OBJS		=	$(SRCS:.c=.o)
+SRC_DIR		=	./src
+OBJ_DIR		=	./obj
+INC_DIR		=	./include ./minilibx
+
+SRCS		=	$(wildcard $(SRC_DIR)/*.c)
+OBJS		=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
+
+INCLUDES	=	$(addprefix -I, $(INC_DIR))
+LIBS		=	-L./minilibx-linux -lmlx -lm -lX11 -lXext
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-	@$(CC) -L./minilibx-linux -lmlx -lm -lX11 -lXext
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
 
-%.o:%.c
-	@$(CC) $(CFLAGS) -c $^ -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
 	@rm -f $(OBJS)
+	@rm -rf $(OBJ_DIR)
+
 fclean:		clean
 	@rm -f $(NAME)
+
 re:			fclean all
 
-.PHONY:	all clean fclean re
+.PHONY:		all clean fclean re

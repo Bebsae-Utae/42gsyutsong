@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:36:54 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/10 12:05:01 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/11 13:38:17 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	move_a(t_param *par)
 	{
 		par->cnt_work ++;
 		if (par->newmap[par->where_dorong - 1] == 'C')
-			par->get_item = 1;
+			par->get_item ++;
 		mlx_clear_window(par->mlx, par->win);
 		par->newmap[par->where_dorong] = '0';
 		par->newmap[par->where_dorong - 1] = 'P';
@@ -49,7 +49,7 @@ void	move_d(t_param *par)
 	{
 		par->cnt_work ++;
 		if (par->newmap[par->where_dorong + 1] == 'C')
-			par->get_item = 1;
+			par->get_item ++;
 		mlx_clear_window(par->mlx, par->win);
 		par->newmap[par->where_dorong] = '0';
 		par->newmap[par->where_dorong + 1] = 'P';
@@ -72,7 +72,7 @@ void	move_s(t_param *par)
 	{
 		par->cnt_work ++;
 		if (par->newmap[par->where_dorong + par->win_width] == 'C')
-			par->get_item = 1;
+			par->get_item ++;
 		mlx_clear_window(par->mlx, par->win);
 		par->newmap[par->where_dorong] = '0';
 		par->newmap[par->where_dorong + par->win_width] = 'P';
@@ -95,7 +95,7 @@ void	move_w(t_param *par)
 	{
 		par->cnt_work ++;
 		if (par->newmap[par->where_dorong - par->win_width] == 'C')
-			par->get_item = 1;
+			par->get_item ++;
 		mlx_clear_window(par->mlx, par->win);
 		par->newmap[par->where_dorong] = '0';
 		par->newmap[par->where_dorong - par->win_width] = 'P';

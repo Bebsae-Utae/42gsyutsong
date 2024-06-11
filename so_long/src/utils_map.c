@@ -6,13 +6,13 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:32:53 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/10 12:47:12 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/11 13:05:26 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	draw_map(t_param *par)
+void	draw_map(t_param *par)
 {
 	int	i;
 	int	x;
@@ -46,6 +46,8 @@ void	make_map(t_param *par)
 
 	idx1 = 0;
 	idx2 = 0;
+	if (par->win_width < 3 || par->win_height < 3)
+		print_error(1, par);
 	len = ft_strlen(par->mapdatas);
 	par->newmap = (char *)malloc(sizeof(char) * len + 1);
 	while (par->mapdatas[idx1])
@@ -71,8 +73,6 @@ void	read_map(t_param *par, char *argv)
 		print_error(7, par);
 	line = get_next_line(fd);
 	len = ft_strlen(line);
-	if (len < 3)
-		print_error(1, par);
 	par->win_width = len - 1;
 	par->mapdatas = ft_strdup(line);
 	while (line)
@@ -82,8 +82,6 @@ void	read_map(t_param *par, char *argv)
 			par->mapdatas = ft_strjoin(par->mapdatas, line);
 		par->win_height ++;
 	}
-	if (par->win_height < 3)
-		print_error(1, par);
 	free(line);
 	close(fd);
 }
@@ -96,15 +94,21 @@ void	check_wall(t_param *par)
 	while (idx < ft_strlen(par->newmap))
 	{
 		if (idx < par->win_width)
+		{
 			if (par->newmap[idx] != '1')
 				print_error(1, par);
+		}
 		else if (idx % par->win_width == 0
 			|| idx % par->win_width == par->win_width - 1)
+		{
 			if (par->newmap[idx] != '1')
 				print_error(1, par);
+		}
 		else if (idx > ft_strlen(par->newmap) - par->win_width)
+		{
 			if (par->newmap[idx] != '1')
 				print_error(1, par);
+		}
 		idx ++;
 	}
 }
@@ -115,7 +119,6 @@ void	check_map(t_param *par)
 	int		cnt_dorong;
 	int		cnt_item;
 	int		cnt_door;
-	char	c;
 
 	idx = 0;
 	cnt_dorong = 0;
