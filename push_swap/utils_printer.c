@@ -6,12 +6,13 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:01:52 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/12 16:40:25 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/17 14:26:54 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 void	print_error(int code)
 {
+	write(1, "Error\n", 6);
 	exit(0);
 }
 

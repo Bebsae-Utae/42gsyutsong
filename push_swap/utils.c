@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 14:05:50 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/17 13:55:59 by yutsong          ###   ########.fr       */
+/*   Created: 2024/06/17 13:43:34 by yutsong           #+#    #+#             */
+/*   Updated: 2024/06/17 13:47:52 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <limits.h>
-
-typedef struct s_node
+int	ft_atoi(char	*str)
 {
-	int				value;
-	int				index;
-	struct s_node	*next;
-}	t_node;
+	int	idx;
+	int	minus;
+	int	result;
 
-typedef struct s_stack
-{
-	int		size;
-	t_node	*top;
-	t_node	*bottom;
-}	t_stack;
-
-void	check_argv(int argc, char **argv);
-
-void	init_stack(t_stack *a, t_stack *b);
-
-int		ft_atoi(char	*str);
-
-#endif
+	idx = 0;
+	minus = 1;
+	result = 0;
+	while (str[idx] >= 7 && str[idx] <= 13)
+		idx ++;
+	if (str[idx] == '-' || str[idx] == '+')
+	{
+		if (str[idx] == '-')
+		 	minus *= -1;
+		idx ++;
+	}
+	while (str[idx] >= '0' && str[idx] <= '9')
+	{
+		result *= 10;
+		result += str[idx] - '0';
+		idx ++;
+	}
+	return (result * minus);
+}

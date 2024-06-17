@@ -6,20 +6,20 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:56:50 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/12 16:53:20 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/17 12:53:44 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char *argv[])
+int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
-	// 구조체 초기화
-	init_deque();
 	// 입력받은 인자 유효한지 확인
 	check_argv(argc, **argv);
+	// 구조체 초기화
+	init_stack(&a, &b);
 	// 입력받은 인자를 구조체에 넣어줌
 	// 정렬
 	quick_sort();

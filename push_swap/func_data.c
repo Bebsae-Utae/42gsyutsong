@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   func_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 14:05:50 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/17 13:55:59 by yutsong          ###   ########.fr       */
+/*   Created: 2024/06/17 13:19:55 by yutsong           #+#    #+#             */
+/*   Updated: 2024/06/17 15:01:18 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <limits.h>
-
-typedef struct s_node
+int	push()
 {
-	int				value;
-	int				index;
-	struct s_node	*next;
-}	t_node;
+	// 스택에 데이터 없으면 정지
+	if ()
+		return (0);
+	// 스택에서 데이터 뽑기
+}
 
-typedef struct s_stack
+int	swap()
 {
-	int		size;
-	t_node	*top;
-	t_node	*bottom;
-}	t_stack;
+	// 스택에 데이터 없으면 정지
+	// 데이터 스왑하기
+}
 
-void	check_argv(int argc, char **argv);
-
-void	init_stack(t_stack *a, t_stack *b);
-
-int		ft_atoi(char	*str);
-
-#endif
+int	rotate()
+{
+	// 스택에 데이터 없으면 정지
+	// 데이터 로테이션
+}

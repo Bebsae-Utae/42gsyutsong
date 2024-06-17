@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:23:41 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/12 16:30:37 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/17 14:21:04 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,9 @@ void	check_argv(int argc, char **argv)
 		}
 		idx ++;
 	}
+}
+
+int	check_space()
+{
+	
 }
