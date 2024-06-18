@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:43:34 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/17 13:47:52 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/18 14:27:52 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,16 @@ int	ft_atoi(char	*str)
 		idx ++;
 	}
 	return (result * minus);
+}
+
+t_node	*ft_lstnew(void *content)
+{
+	t_node	*new;
+
+	new = (t_node *)malloc(sizeof(t_node));
+	if (!new)
+		return (NULL);
+	new->next = NULL;
+	new->value = content;
+	return (new);
 }

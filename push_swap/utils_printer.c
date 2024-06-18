@@ -6,17 +6,27 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:01:52 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/17 14:26:54 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/18 17:08:38 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	print_error(int code)
+#include "push_swap.h"
+
+void	print_error()
 {
 	write(1, "Error\n", 6);
 	exit(0);
 }
 
-void	print_order()
+void	print_list(t_node *head)
 {
-	
+	t_node	*temp;
+
+	temp = head;
+	while (temp != NULL)
+	{
+		temp->value;
+		// temp->value 출력해야 함
+		temp = temp->next;
+	}
 }
