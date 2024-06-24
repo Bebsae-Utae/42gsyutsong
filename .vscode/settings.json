@@ -3,6 +3,7 @@
     "stdarg.h": "c",
     "ft_printf.h": "c",
     "unistd.h": "c",
-    "so_long.h": "c"
+    "so_long.h": "c",
+    "libft.h": "c"
   }
 }
