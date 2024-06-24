@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:17:31 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/18 16:26:05 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/24 15:46:39 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ int	push(t_node **stack_to, t_node **stack_from)
 	t_node	*temp;
 	t_node	*head_to;
 	t_node	*head_from;
+	t_stack *stack;
 
-	if (list_size(*stack_from) == 0)
+	if (stack->size == 0)
 		return (-1);
 	head_to = *stack_to;
 	head_from = *stack_from;

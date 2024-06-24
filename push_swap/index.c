@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_stack.c                                      :+:      :+:    :+:   */
+/*   index.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/18 12:56:04 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/18 17:03:05 by yutsong          ###   ########.fr       */
+/*   Created: 2024/06/24 16:43:53 by yutsong           #+#    #+#             */
+/*   Updated: 2024/06/24 16:43:57 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	stack_push_args(char **argv)
+static t_list	*get_next_min(t_list **stack)
 {
-	t_stack	*new;
-	int		idx;
-
-	idx = 0;
-	if (new == NULL)
-		return ;
-	while (argv[idx])
-	{
-		new = ft_lstnew(ft_atoi(argv[idx]));
-		
-		idx ++;
-	}
-}
-
-t_node	*stack_next_stack(t_node **stack)
-{
-	t_node	*head;
-	t_node	*min;
+	t_list	*head;
+	t_list	*min;
 	int		has_min;
 
 	min = NULL;
@@ -52,31 +36,16 @@ t_node	*stack_next_stack(t_node **stack)
 	return (min);
 }
 
-void	stack_index(t_node **stack)
+void	index_stack(t_list **stack)
 {
-	t_node *head;
-	int		idx;
+	t_list	*head;
+	int		index;
 
-	idx = 0;
-	head = stack_next_stack(stack);
+	index = 0;
+	head = get_next_min(stack);
 	while (head)
 	{
-		head->index = idx ++;
-		head = stack_next_stack(stack);
+		head->index = index++;
+		head = get_next_min(stack);
 	}
-}
-
-void	stack_free(t_node **stack)
-{
-	t_node	*head;
-	t_node	*temp;
-
-	head = *stack;
-	while (head)
-	{
-		temp = head;
-		head = head->next;
-		free(temp);
-	}
-	free(stack);
 }

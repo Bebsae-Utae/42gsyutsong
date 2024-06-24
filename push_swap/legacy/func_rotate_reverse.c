@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:16:29 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/18 16:28:22 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/24 15:50:41 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ int	rotate_reverse(t_node **stack)
 {
 	t_node	*head;
 	t_node	*tail;
+	t_stack	*stacker;
 
-	if (list_size(*stack) < 2)
+	if (stacker->size < 2)
 		return (-1);
 	head = *stack;
 	tail = list_size(head);

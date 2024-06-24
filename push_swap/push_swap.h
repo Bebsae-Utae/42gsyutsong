@@ -5,80 +5,75 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 14:05:50 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/24 15:11:17 by yutsong          ###   ########.fr       */
+/*   Created: 2024/06/24 16:43:10 by yutsong           #+#    #+#             */
+/*   Updated: 2024/06/24 17:06:43 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <stdlib.h>
+# include <stddef.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
 
-typedef struct s_node
+// Stack
+typedef struct s_list
 {
 	int				value;
 	int				index;
-	struct s_node	*prev;
-	struct s_node	*next;
-}	t_node;
+	struct s_list	*next;
+}				t_list;
 
-typedef struct s_stack
-{
-	int		size;
-	t_node	*top;
-	t_node	*bottom;
-}	t_stack;
+// Util functions
+t_list	*ft_lstnew(int value);
+t_list	*ft_lstlast(t_list *head);
+void	ft_lstadd_front(t_list **stack, t_list *new);
+void	ft_lstadd_back(t_list **stack, t_list *new);
+void	printList(t_list *head);
+int		ft_lstsize(t_list *head);
 
-int		command();
+void	ft_error(char *msg);
+void	ft_check_args(int argc, char **argv);
+int		is_sorted(t_list **stack);
+int		get_distance(t_list **stack, int index);
+void	make_top(t_list **stack, int distance);
+void	free_stack(t_list **stack);
+void	ft_free(char **str);
 
-int		push(t_node **stack_to, t_node **stack_from);
-void	pa(t_node **stack_a, t_node **stack_b);
-void	pb(t_node **stack_a, t_node **stack_b);
+// Algorithm utils
+void	radix_sort(t_list **stack_a, t_list **stack_b);
+void	simple_sort(t_list **stack_a, t_list **stack_b);
+void	index_stack(t_list **stack);
+void	sort_5(t_list **stack_a, t_list **stack_b);
 
-int		rotate_reverse(t_node **stack);
-void	rra(t_node **stack_a);
-void	rrb(t_node **stack_b);
-void	rrr(t_node **stack_a, t_node **stack_b);
+// Instruction functions
+int		swap(t_list **stack);
+int		push(t_list **stack_to, t_list **stack_from);
+int		rotate(t_list **stack);
+int		reverseRotate(t_list **stack);
 
-int		rotate(t_node **stack);
-void	ra(t_node **stack_a);
-void	rb(t_node **stack_b);
-void	rr(t_node **stack_a, t_node **stack_b);
+int		sa(t_list **stack_a);
+int		sb(t_list **stack_b);
+int		ss(t_list **stack_a, t_list **stack_b);
+int		pa(t_list **stack_a, t_list **stack_b);
+int		pb(t_list **stack_b, t_list **stack_a);
+int		ra(t_list **stack_a);
+int		rb(t_list **stack_b);
+int		rr(t_list **stack_a, t_list **stack_b);
+int		rra(t_list **stack_a);
+int		rrb(t_list **stack_b);
+int		rrr(t_list **stack_a, t_list **stack_b);
 
-int		swap(t_node **stack);
-void	sa(t_node **stack_a);
-void	sb(t_node **stack_b);
-void	ss(t_node **stack_a, t_node **stack_b);
-
-void	check_args(int argc, char **argv);
-int		check_num(char *num);
-int		check_duplicate(int num, char **argv, int idx);
-int		check_sorted(t_node **stack);
-
-int		ft_atoi(char	*str);
-t_node	*ft_lstnew(void *content);
-
-void	init_stack(t_node **stack, int argc, char **argv);
-
-t_node	*list_make_new(int value);
-t_node	*list_return_last(t_node *head);
-void	list_add_front(t_node **stack, t_node *new);
-void	list_add_back(t_node **stack, t_node *new);
-void	list_get_size(t_node *head, t_stack *stack_manager);
-void	list_free(char **str);
-
-void	print_error();
-void	print_list(t_node *head);
-
-void	sort_stack(t_node **stack_a, t_node **stack_b, t_stack *stack_manager_a);
-void	sort_simple(t_node **stack_a, t_node **stack_b);
-
-void	stack_push_args(char **argv);
-t_node	*stack_next_stack(t_node **stack);
-void	stack_index(t_node **stack);
-void	stack_free(t_node **stack);
+int	ft_atoi(char	*str);
+void	ft_putnbr_fd(int n, int fd);
+void	ft_putendl_fd(char *s, int fd);
+char	**ft_split(char const *s, char c);
+int	ft_strlcpy(char *dest, const char *src, int size);
+int	ft_strlen(const char *str);
+void	ft_putchar_fd(char c, int fd);
+int	ft_isdigit(int c);
 
 #endif
