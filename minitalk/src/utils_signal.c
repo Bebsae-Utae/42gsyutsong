@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 19:18:58 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/24 21:08:43 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/25 11:59:38 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void signal_handler(int signal)
 {
-	int		bit;
-	char	temp;
+	static int	bit;
+	static char	temp;
 
 	if (signal == SIGUSR1)
 		temp |= (1 << bit);
