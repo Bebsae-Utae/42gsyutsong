@@ -6,13 +6,13 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 19:18:58 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/25 11:59:38 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/25 14:26:51 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void signal_handler(int signal)
+void	signal_handler(int signal)
 {
 	static int	bit;
 	static char	temp;

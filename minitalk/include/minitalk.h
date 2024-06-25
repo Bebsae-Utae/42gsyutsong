@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 19:04:15 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/24 21:08:38 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/25 14:42:47 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <unistd.h>
 # include <signal.h>
 # include <stdlib.h>
-
 
 void	signal_handler(int signal);
 void	signal_send_bit(int pid, char input);

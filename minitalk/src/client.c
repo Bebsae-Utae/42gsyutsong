@@ -6,13 +6,13 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 17:45:23 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/25 11:35:29 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/25 14:26:31 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int	pid;
 

@@ -6,14 +6,17 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 17:45:01 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/25 11:54:14 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/25 14:42:42 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int main(void)
+int	main(int argc, char **argv)
 {
+	(void)argv;
+	if (argc != 1)
+		ft_putstr_fd("No Arguments Required.\n", 1);
 	ft_putstr_fd("PID : ", 1);
 	ft_putnbr_fd(getpid(), 1);
 	ft_putchar_fd('\n', 1);
