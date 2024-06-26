@@ -6,7 +6,7 @@
 #    By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 19:50:01 by yutsong           #+#    #+#              #
-#    Updated: 2024/06/25 11:39:30 by yutsong          ###   ########.fr        #
+#    Updated: 2024/06/26 11:16:50 by yutsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,8 @@ CLIENT			= client
 SRC_DIR			= ./src
 INC_DIR			= ./include
 
-COMMON_FILES	= utils_ft.c utils_signal.c
-SERVER_FILES	= server.c $(COMMON_FILES)
-CLIENT_FILES	= client.c $(COMMON_FILES)
+SERVER_FILES	= server.c utils_server.c utils_ft.c
+CLIENT_FILES	= client.c utils_client.c utils_ft.c
 
 SERVER_OBJS		= $(SERVER_FILES:.c=.o)
 CLIENT_OBJS		= $(CLIENT_FILES:.c=.o)

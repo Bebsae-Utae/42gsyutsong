@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_signal.c                                     :+:      :+:    :+:   */
+/*   utils_server.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 19:18:58 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/25 14:26:51 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/06/26 11:15:47 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	signal_handler(int signal)
+void	server_handler(int signal)
 {
 	static int	bit;
 	static char	temp;
@@ -26,34 +26,4 @@ void	signal_handler(int signal)
 		bit = 0;
 		temp = 0;
 	}
-}
-
-void	signal_send_bit(int pid, char input)
-{
-	int	bit;
-
-	bit = 0;
-	while (bit < 8)
-	{
-		if ((input & (1 << bit)) != 0)
-			kill(pid, SIGUSR1);
-		else
-			kill(pid, SIGUSR2);
-		usleep(100);
-		bit++;
-	}
-}
-
-void	signal_send_str(int pid, char *input)
-{
-	int	i;
-
-	i = 0;
-	while (input[i] != '\0')
-	{
-		signal_send_bit(pid, input[i]);
-		i++;
-	}
-	signal_send_bit(pid, '\n');
-	signal_send_bit(pid, '\0');
 }

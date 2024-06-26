@@ -1,32 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   utils_client.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 17:45:23 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/26 11:17:38 by yutsong          ###   ########.fr       */
+/*   Created: 2024/06/26 11:14:58 by yutsong           #+#    #+#             */
+/*   Updated: 2024/06/26 11:17:55 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int	main(int argc, char **argv)
+void	client_send_bit(int pid, char input)
 {
-	int	pid;
+	int	bit;
 
-	if (argc == 3 && argv[2][0] != '\0')
+	bit = 0;
+	while (bit < 8)
 	{
-		pid = ft_atoi(argv[1]);
-		if (pid < 100 || pid > 4194304)
-		{
-			ft_putstr_fd("Invalid PID.\n", 1);
-			return (0);
-		}
-		client_send_str(pid, argv[2]);
+		if ((input & (1 << bit)) != 0)
+			kill(pid, SIGUSR1);
+		else
+			kill(pid, SIGUSR2);
+		usleep(100);
+		bit++;
 	}
-	else
-		ft_putstr_fd("Wrong Arguments.\n", 1);
-	return (0);
+}
+
+void	client_send_str(int pid, char *input)
+{
+	int	i;
+
+	i = 0;
+	while (input[i] != '\0')
+	{
+		client_send_bit(pid, input[i]);
+		i++;
+	}
+	client_send_bit(pid, '\n');
+	client_send_bit(pid, '\0');
 }
