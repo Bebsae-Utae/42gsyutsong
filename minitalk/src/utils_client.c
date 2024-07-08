@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:14:58 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/26 11:17:55 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/07/08 12:11:50 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	client_send_bit(int pid, char input)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(100);
+		usleep(500);
 		bit++;
 	}
 }
