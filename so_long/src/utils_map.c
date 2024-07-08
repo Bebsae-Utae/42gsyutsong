@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:32:53 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/11 18:34:04 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/07/08 13:54:37 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,27 +115,9 @@ void	check_wall(t_param *par)
 
 void	check_map(t_param *par)
 {
-	int		idx;
-	int		cnt_dorong;
-	int		cnt_item;
-	int		cnt_door;
-
-	idx = 0;
-	cnt_dorong = 0;
-	cnt_item = 0;
-	cnt_door = 0;
 	if (par->win_height * par->win_width != ft_strlen(par->newmap))
 		print_error(2, par);
-	while (idx ++ < ft_strlen(par->newmap))
-	{
-		if (par->newmap[idx] == 'E')
-			cnt_door ++;
-		else if (par->newmap[idx] == 'P')
-			cnt_dorong ++;
-		else if (par->newmap[idx] == 'C')
-			cnt_item ++;
-	}
-	check_map2(par, cnt_dorong, cnt_item, cnt_door);
+	check_char(par);
 	find_dorong(par);
 	if (!valid_path(par))
 		print_error(9, par);

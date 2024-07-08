@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:25:24 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/11 19:07:33 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/07/08 13:52:17 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	check_rec(t_param *par);
 void	check_mapname(t_param *par, char *filename);
 int		dfs(t_param *par, int idx, int width, int height);
 int		valid_path(t_param *par);
+
+void	check_char(t_param *par);
 
 int		push_btn(int keycode, t_param *par);
 void	move_w(t_param *par);
