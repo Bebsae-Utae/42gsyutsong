@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:28:09 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/01 14:34:31 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/01 15:11:39 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	exit_btn(t_param *par)
 	mlx_destroy_display(par->mlx);
 	free(par->newmap);
 	free(par->mlx);
+	free(par->mapdatas);
 	exit(0);
 }
 

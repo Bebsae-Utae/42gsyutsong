@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:25:24 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/01 12:11:26 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/01 15:45:07 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,12 @@ void	find_dorong(t_param *par);
 
 void	draw_map(t_param *par);
 void	make_map(t_param *par);
-void	read_map(t_param *par, char *argv);
 void	check_wall(t_param *par);
 void	check_map(t_param *par);
+
+void	read_map(t_param *par, char *argv);
+int		init_map_data(t_param *par, int fd);
+void	read_remaining_lines(t_param *par, int fd);
 
 void	check_map2(t_param *par, int dorong, int item, int door);
 void	check_rec(t_param *par);

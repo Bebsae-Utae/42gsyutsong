@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   utils_get_next_line1.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 12:18:33 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/04 13:56:00 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/01 15:12:30 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static char	*checkline(char *keepsaveline)
 		if (!keepsaveline)
 			return (NULL);
 		keepsaveline[0] = '\0';
-		return (keepsaveline);
 	}
 	return (keepsaveline);
 }
@@ -42,7 +41,10 @@ static char	*onetime_reader(int fd, char *keepsaveline, char *tempsaveline)
 		temp = keepsaveline;
 		keepsaveline = ft_strjoin(temp, tempsaveline);
 		if (!keepsaveline)
+		{
+			free(temp);
 			return (NULL);
+		}
 		free(temp);
 		temp = NULL;
 		if (ft_strchr(keepsaveline, '\n'))
@@ -112,7 +114,6 @@ char	*get_next_line(int fd)
 		return (NULL);
 	printoneline = onetime_reader(fd, keepsaveline, tempsaveline);
 	free(tempsaveline);
-	tempsaveline = NULL;
 	if (!printoneline)
 		return (NULL);
 	keepsaveline = splitline(printoneline, keepsaveline);
