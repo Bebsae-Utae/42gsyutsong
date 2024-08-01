@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:51:13 by yutsong           #+#    #+#             */
-/*   Updated: 2024/07/08 15:23:21 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/01 12:32:51 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,25 @@
 
 void	printer(t_param *par)
 {
-	int	len;
+	int		len;
+	char	*str;
 
 	len = num_len(par->cnt_work);
 	write(1, "movement : ", 11);
-	write(1, int_to_char(par->cnt_work), len);
+	str = int_to_char(par->cnt_work);
+	write(1, str, len);
+	free(str);
 	write(1, "\n", 1);
 	mlx_string_put(par->mlx, par->win, 20, 10, 0x00FFFFFF, "movement : ");
+	str = int_to_char(par->cnt_work);
 	mlx_string_put(par->mlx, par->win, 90, 10, 0x00FFFFFF,
-		int_to_char(par->cnt_work));
+		str);
+	free(str);
 	mlx_string_put(par->mlx, par->win, 20, 20, 0x00FFFFFF, "itemcnts : ");
+	str = int_to_char(par->get_item);
 	mlx_string_put(par->mlx, par->win, 90, 20, 0x00FFFFFF,
-		int_to_char(par->get_item));
+		str);
+	free(str);
 }
 
 void	print_error(int codes, t_param *par)

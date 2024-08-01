@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:32:31 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/11 14:24:35 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/01 13:13:42 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ int	main(int argc, char *argv[])
 	mlx_hook(par.win, 17, 1L << 17, &exit_btn, &par);
 	printer(&par);
 	mlx_loop(par.mlx);
+	free(par.mapdatas);
 }

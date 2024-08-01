@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:32:53 by yutsong           #+#    #+#             */
-/*   Updated: 2024/07/08 13:54:37 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/01 14:46:09 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	read_map(t_param *par, char *argv)
 	char	*line;
 	int		fd;
 	int		len;
+	char	*temp;
 
 	len = 0;
 	fd = open(argv, O_RDONLY);
@@ -75,14 +76,17 @@ void	read_map(t_param *par, char *argv)
 	len = ft_strlen(line);
 	par->win_width = len - 1;
 	par->mapdatas = ft_strdup(line);
+	free(line);
 	while (line)
 	{
 		line = get_next_line(fd);
+		temp = par->mapdatas;
 		if (line)
 			par->mapdatas = ft_strjoin(par->mapdatas, line);
+		free(temp);
+		free(line);
 		par->win_height ++;
 	}
-	free(line);
 	close(fd);
 }
 
@@ -115,6 +119,11 @@ void	check_wall(t_param *par)
 
 void	check_map(t_param *par)
 {
+	write(1, int_to_char(par->win_height), 1);
+	write(1, "\n", 1);
+	write(1, int_to_char(par->win_height), 1);
+	write(1, "\n", 1);
+	write(1, int_to_char(ft_strlen(par->newmap)), 1);
 	if (par->win_height * par->win_width != ft_strlen(par->newmap))
 		print_error(2, par);
 	check_char(par);

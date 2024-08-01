@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:28:09 by yutsong           #+#    #+#             */
-/*   Updated: 2024/07/08 16:04:28 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/01 14:34:31 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,22 @@
 
 int	exit_btn(t_param *par)
 {
+	mlx_loop_end(par->mlx);
+	mlx_destroy_image(par->mlx, par->tree);
+	mlx_destroy_image(par->mlx, par->dorong);
+	mlx_destroy_image(par->mlx, par->tile);
+	mlx_destroy_image(par->mlx, par->item);
+	mlx_destroy_image(par->mlx, par->door);
 	mlx_destroy_window(par->mlx, par->win);
-	exit(0);
+	mlx_destroy_display(par->mlx);
 	free(par->newmap);
+	free(par->mlx);
+	exit(0);
 }
 
 int	clear_game(t_param *par)
 {
-	mlx_destroy_window(par->mlx, par->win);
+	exit_btn(par);
 	write(1, "congratulation!\n", 16);
 	exit(0);
 }
