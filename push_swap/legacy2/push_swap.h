@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:43:10 by yutsong           #+#    #+#             */
-/*   Updated: 2024/06/24 17:06:43 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/02 15:50:16 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include <unistd.h>
-# include <stdlib.h>
 # include <limits.h>
 
 // Stack
@@ -75,5 +74,8 @@ int	ft_strlcpy(char *dest, const char *src, int size);
 int	ft_strlen(const char *str);
 void	ft_putchar_fd(char c, int fd);
 int	ft_isdigit(int c);
+int	ft_isnum(char *num);
+int	ft_contains(int num, char **argv, int i);
+
 
 #endif
