@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 17:55:02 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/02 17:56:35 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/02 18:25:39 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,37 @@ int	get_max_bits(t_list **stack)
 	while ((max >> max_bits) != 0)
 		max_bits ++;
 	return (max_bits);
+}
+
+int	get_min(t_list **stack, int val)
+{
+	t_list	*head;
+	int		min;
+
+	head = *stack;
+	min = head->index;
+	while (head->next)
+	{
+		head = head->next;
+		if ((head->index < min) && head->index != val)
+			min = head->index;
+	}
+	return (min);
+}
+
+int	get_distance(t_list **stack, int index)
+{
+	t_list	*head;
+	int		distance;
+
+	distance = 0;
+	head = *stack;
+	while (head)
+	{
+		if (head->index == index)
+			break ;
+		distance++;
+		head = head->next;
+	}
+	return (distance);
 }

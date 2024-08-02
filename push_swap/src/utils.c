@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 16:25:53 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/02 17:55:20 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/02 18:19:48 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,32 @@ int	ft_atoi(char *str)
 		idx ++;
 	}
 	return (result * minus);
+}
+
+int	ft_strlcpy(char *dest, const char *src, int size)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = ft_strlen(src);
+	if (!size)
+		return (len);
+	while (src[i] && i < size - 1)
+	{
+		dest[i] = src[i];
+		i ++;
+	}
+	dest[i] = '\0';
+	return (len);
+}
+
+int	ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i ++;
+	return (i);
 }

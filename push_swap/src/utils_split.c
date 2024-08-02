@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:12:53 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/02 16:26:06 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/02 18:28:24 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	**ft_split(char const *s, char c)
 	return (result);
 }
 
-static int	counter_word(char const *str, char c)
+int	counter_word(char const *str, char c)
 {
 	int	count;
 
@@ -43,7 +43,7 @@ static int	counter_word(char const *str, char c)
 	return (count);
 }
 
-static int	setter_word(char const *str, char c, char **result, int idx)
+int	setter_word(char const *str, char c, char **result, int idx)
 {
 	int	len;
 

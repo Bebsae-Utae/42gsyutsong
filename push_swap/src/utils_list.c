@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 16:53:33 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/02 17:35:17 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/02 18:22:34 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_list	*list_last(t_list *head)
 	return (temp);
 }
 
-t_list	list_add_back(t_list **stack, t_list *new)
+void	list_add_back(t_list **stack, t_list *new)
 {
 	t_list	*n;
 
