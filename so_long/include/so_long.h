@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:25:24 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/01 15:45:07 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/05 18:50:00 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,11 @@ void	read_remaining_lines(t_param *par, int fd);
 void	check_map2(t_param *par, int dorong, int item, int door);
 void	check_rec(t_param *par);
 void	check_mapname(t_param *par, char *filename);
+
 int		dfs(t_param *par, int idx, int width, int height);
+int		dfs_c(t_param *par, int idx, int width, int height);
 int		valid_path(t_param *par);
+int		count_total_c(char *map, int width, int height);
 
 void	check_char(t_param *par);
 
