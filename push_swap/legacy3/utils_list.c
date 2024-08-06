@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 16:53:33 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/06 14:58:12 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/05 20:13:23 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_list	*list_new(int value)
 	t_list	*new;
 
 	new = (t_list *)malloc(sizeof(*new));
-	if (!new)
+	if(!new)
 		return (NULL);
 	new->value = value;
 	new->index = -1;
@@ -30,10 +30,10 @@ t_list	*list_last(t_list *head)
 	t_list	*temp;
 
 	temp = head;
-	while (temp->next)
+	while(temp->next)
 	{
 		temp = temp->next;
-		if (temp->next == NULL)
+		if(temp->next == NULL)
 			return (temp);
 	}
 	return (temp);
@@ -43,7 +43,7 @@ void	list_add_back(t_list **stack, t_list *new)
 {
 	t_list	*n;
 
-	if (*stack)
+	if(*stack)
 	{
 		n = list_last(*stack);
 		n->next = new;

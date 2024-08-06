@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 16:25:53 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/06 21:19:17 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/06 14:58:23 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,20 @@
 
 long	ft_atol(char *str)
 {
-	long	result;
-	int		minus;
 	int		idx;
+	int		minus;
+	long	result;
 
 	idx = 0;
 	minus = 1;
 	result = 0;
-	while (is_space(str[idx]))
+	while (str[idx] >= 7 && str[idx] <= 13)
 		idx ++;
 	if (str[idx] == '-')
+	{
 		minus *= -1;
-	if (str[idx] == '-' || str[idx] == '+')
 		idx ++;
+	}
 	while (ft_isdigit(str[idx]))
 	{
 		result = result * 10 + (str[idx] - '0');

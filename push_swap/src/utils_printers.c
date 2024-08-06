@@ -6,16 +6,15 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:08:18 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/02 18:18:35 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/06 21:13:59 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
-int	print_error(int code)
+int	print_error(t_stack **stack_a)
 {
-	if (code >= 1)
-		write(2, "Error\n", 6);
+	free_stack(stack_a);
+	write(2, "Error\n", 6);
 	exit(1);
-	return (-1);
 }

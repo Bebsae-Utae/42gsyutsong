@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 16:24:10 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/06 16:55:02 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/06 15:55:12 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,4 @@ int	is_sorted(t_list **stack)
 		head = head->next;
 	}
 	return (1);
-}
-
-int	is_space(int c)
-{
-	c = (unsigned char)c;
-	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r'
-		|| c == ' ')
-		return (1);
-	return (0);
 }

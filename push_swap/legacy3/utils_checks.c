@@ -6,33 +6,49 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:37:39 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/06 21:21:57 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/05 20:17:04 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "push_swap.h"
 
-int	check_args(char *str)
+void	check_args(int argc, char **argv)
 {
-	if (!(*str == '+' || *str == '-' || ft_isdigit(*str)))
-		return (1);
-	if ((*str == '+' || *str == '-') && !(str[1] >= '0' && str[1] <= '9'))
-		return (1);
-	while (*++str)
-		if (!(ft_isdigit(*str)))
-			return (1);
-	return (0);
+	int		idx;
+	long	temp;
+	char	**args;
+
+	idx = 0;
+	if (argc == 2)
+		args = ft_split(argv[1], ' ');
+	else
+	{
+		idx = 1;
+		args = argv;
+	}
+	while (args[idx])
+	{
+		if (!ft_isnum(args[idx]))
+			print_error(1);
+		temp = ft_atol(args[idx]);
+		if (check_equal(temp, args, idx))
+			print_error(1);
+		if (temp < -2147483648 || temp > 2147483647)
+			print_error(1);
+		idx ++;
+	}
+	if (argc == 2)
+		free_all(args);
 }
 
-int	check_equal(t_stack *stack_a, int num)
+int	check_equal(long num, char **argv, int i)
 {
-	if (!stack_a)
-		return (0);
-	while (stack_a)
+	i++;
+	while (argv[i])
 	{
-		if (stack_a->count_sort == num)
+		if (ft_atol(argv[i]) == num)
 			return (1);
-		stack_a = stack_a->next;
+		i++;
 	}
 	return (0);
 }

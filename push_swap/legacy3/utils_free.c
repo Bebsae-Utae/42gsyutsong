@@ -6,26 +6,34 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 16:24:37 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/06 21:14:25 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/02 17:31:12 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "push_swap.h"
 
-void	free_stack(t_stack **stack)
+void	free_all(char **str)
 {
-	t_stack	*temp;
-	t_stack	*now;
+	int	i;
 
-	if (!stack)
-		return ;
-	now = *stack;
-	while (now)
+	i = 0;
+	while (str[i])
+		i++;
+	while (i >= 0)
+		free(str[i--]);
+}
+
+void	free_stack(t_list **stack)
+{
+	t_list	*head;
+	t_list	*temp;
+
+	head = *stack;
+	while (head)
 	{
-		temp = now->next;
-		now->count_sort = 0;
-		free(now);
-		now = temp;
+		temp = head;
+		head = head->next;
+		free(temp);
 	}
-	*stack = NULL;
+	free(stack);
 }

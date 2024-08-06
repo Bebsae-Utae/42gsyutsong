@@ -6,47 +6,53 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 16:46:30 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/02 17:14:16 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/06 21:19:48 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
-void	stack_init(t_list **stack, int argc, char **argv)
+void	stack_init(t_stack **stack_a, char **argv)
 {
-	t_list	*new;
-	char	**args;
-	int		idx;
+    long    num;
+    int     idx;
 
 	idx = 0;
-	if (argc == 2)
-		args = ft_split(argv[1], ' ');
-	else
+	while (argv[idx])
 	{
-		idx = 1;
-		args = argv;
-	}
-	while (args[idx])
-	{
-		new = list_new(ft_atoi(args[idx]));
-		list_add_back(stack, new);
+		if (check_args(argv[idx]))
+			print_error(stack_a);
+		num = ft_atol(argv[idx]);
+		if (num > INT_MAX || num < INT_MIN)
+			print_error(stack_a);
+		if (check_equal(*stack_a, (int) num))
+			print_error(stack_a);
+		stack_append(stack_a, (int)num);
 		idx ++;
 	}
-	stack_index(stack);
-	if (argc == 2)
-		free_all(args);
 }
 
-void	stack_index(t_list **stack)
+void	stack_append(t_stack **stack_a, int num)
 {
-	t_list	*head;
-	int		idx;
+	t_stack *node_now;
+	t_stack *node_last;
 
-	idx = 0;
-	head = get_next_min(stack);
-	while(head)
+	if (!stack_a)
+		return ;
+	node_now = malloc(sizeof(t_stack));
+	if (!node_now)
+		return ;
+	node_now->next = NULL;
+	node_now->count_sort = num;
+	if (!(*stack_a))
 	{
-		head->index = idx ++;
-		head = get_next_min(stack);
+		*stack_a = node_now;
+		node_now->prev = NULL;
+	}
+	else
+	{
+		node_last = find_last(*stack_a);
+		node_last->next = node_now;
+		node_now->prev = node_last;
 	}
 }

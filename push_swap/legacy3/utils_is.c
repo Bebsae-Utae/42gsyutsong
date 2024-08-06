@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 16:24:10 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/06 16:55:02 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/02 17:20:27 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,8 @@ int	ft_isnum(char *num)
 	int	i;
 
 	i = 0;
-	if (num == NULL || num[0] == '\0')
-		return (0);
 	if (num[0] == '-')
 		i++;
-	if (num[i] == '\0')
-		return (0);
 	while (num[i])
 	{
 		if (!ft_isdigit(num[i]))
@@ -47,18 +43,9 @@ int	is_sorted(t_list **stack)
 	head = *stack;
 	while (head && head->next)
 	{
-		if (head->value > head->next->value)
+		if(head->value > head->next->value)
 			return (0);
 		head = head->next;
 	}
 	return (1);
-}
-
-int	is_space(int c)
-{
-	c = (unsigned char)c;
-	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r'
-		|| c == ' ')
-		return (1);
-	return (0);
 }
