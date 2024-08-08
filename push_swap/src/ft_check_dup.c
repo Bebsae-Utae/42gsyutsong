@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_dup.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yogun <yogun@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 12:16:11 by yogun             #+#    #+#             */
-/*   Updated: 2022/08/08 20:30:29 by yogun            ###   ########.fr       */
+/*   Updated: 2024/08/08 19:52:01 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 // any duplicate numbers.
 int	ft_checkdup(t_stack *a)
 {
-	t_stack	*tmp;
+	t_stack	*temp;
 
 	while (a)
 	{
-		tmp = a->next;
-		while (tmp)
+		temp = a->next;
+		while (temp)
 		{
-			if (a->nbr == tmp->nbr)
+			if (a->nbr == temp->nbr)
 				return (1);
-			tmp = tmp->next;
+			temp = temp->next;
 		}
 		a = a->next;
 	}

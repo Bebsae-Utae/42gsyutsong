@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 18:18:24 by yogun             #+#    #+#             */
-/*   Updated: 2024/08/08 18:30:07 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/08 20:09:16 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,21 @@ typedef struct s_stack
 	struct s_stack	*prev;
 }	t_stack;
 
+int		is_space(int c);
+int		ft_isdigit(int c);
+int		is_equal(t_stack *a);
 
-int	is_space(int c);
-int	ft_isdigit(int c);
-
-int	ft_atoll(const char *str);
+int		ft_atoll(const char *str);
 
 void	print_error(void);
 
 void	free_all(t_stack **lst);
 
 char	**ft_split(char const *s, char c);
+
+void	pa(t_stack **a, t_stack **b, int j);
+void	pb(t_stack **a, t_stack **b, int j);
+
 
 
 

@@ -6,11 +6,11 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 12:17:58 by yogun             #+#    #+#             */
-/*   Updated: 2024/08/08 18:28:23 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/08 19:56:26 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/push_swap.h"
+#include "../includes/push_swap.h"
 
 void	free_all(t_stack **lst)
 {
