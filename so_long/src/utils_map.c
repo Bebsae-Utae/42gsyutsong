@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:32:53 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/01 15:44:35 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/08 19:44:41 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	make_map(t_param *par)
 	idx1 = 0;
 	idx2 = 0;
 	if (par->win_width < 3 || par->win_height < 3)
-		print_error(1, par);
+		exit_sur(par);
 	len = ft_strlen(par->mapdatas);
 	par->newmap = (char *)malloc(sizeof(char) * len + 1);
 	while (par->mapdatas[idx1])

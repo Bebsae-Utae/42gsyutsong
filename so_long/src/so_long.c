@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:32:31 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/01 13:13:42 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/08 19:15:04 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		print_error(6, &par);
+		write(1, "Error\nIncorrect Filename.\n", 26);
 		return (0);
 	}
 	set_param(&par);

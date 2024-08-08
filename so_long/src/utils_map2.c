@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 15:44:11 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/01 15:44:51 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/08 19:30:09 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	read_map(t_param *par, char *argv)
 
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
-		print_error(7, par);
+		exit_pre(par);
 	if (!init_map_data(par, fd))
 	{
 		close(fd);
@@ -64,13 +64,15 @@ void	read_remaining_lines(t_param *par, int fd)
 			break ;
 		temp = ft_strjoin(par->mapdatas, line);
 		free(par->mapdatas);
-		par->mapdatas = temp;
-		free(line);
-		if (!par->mapdatas)
+		if (!temp)
 		{
+			free(line);
+			par->mapdatas = NULL;
 			close(fd);
 			return ;
 		}
+		par->mapdatas = temp;
+		free(line);
 		par->win_height++;
 	}
 }

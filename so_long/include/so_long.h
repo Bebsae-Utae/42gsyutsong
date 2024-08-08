@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:25:24 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/05 18:50:00 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/08 19:44:18 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,9 @@ void	move_s(t_param *par);
 void	move_d(t_param *par);
 
 int		exit_btn(t_param *par);
-int		clear_game(t_param *par);
+void	clear_game(t_param *par);
+int		exit_pre(t_param *par);
+int		exit_sur(t_param *par);
 
 int		ft_strlen(char *newmap);
 char	*int_to_char(long num);
