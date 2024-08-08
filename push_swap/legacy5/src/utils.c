@@ -6,11 +6,11 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 16:25:53 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/06 21:19:17 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/08 16:14:35 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 long	ft_atol(char *str)
 {

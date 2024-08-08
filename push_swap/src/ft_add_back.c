@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_free.c                                       :+:      :+:    :+:   */
+/*   ft_add_back.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yogun <yogun@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/31 12:17:58 by yogun             #+#    #+#             */
-/*   Updated: 2024/08/08 18:28:23 by yutsong          ###   ########.fr       */
+/*   Created: 2022/07/22 10:26:24 by yogun             #+#    #+#             */
+/*   Updated: 2022/09/01 20:32:26 by yogun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	free_all(t_stack **lst)
+// Function to add a new node to the stack from back side
+void	ft_add_back(t_stack **stack, t_stack *stack_new)
 {
-	t_stack	*temp;
-
-	if (!lst)
+	if (!stack)
 		return ;
-	while (*lst)
-	{
-		temp = (*lst)->next;
-		(*lst)->nbr = 0;
-		free(*lst);
-		*lst = temp;
-	}
+	if (!*stack)
+		*stack = stack_new;
+	else
+		(ft_lstlast(*stack))->next = stack_new;
 }

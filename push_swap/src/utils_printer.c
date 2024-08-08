@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_is.c                                         :+:      :+:    :+:   */
+/*   utils_printer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/08 18:20:22 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/08 18:25:58 by yutsong          ###   ########.fr       */
+/*   Created: 2024/08/08 18:23:36 by yutsong           #+#    #+#             */
+/*   Updated: 2024/08/08 18:25:27 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	is_space(int c)
+void	print_error(void)
 {
-	c = (unsigned char)c;
-	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r'
-		|| c == ' ')
-		return (1);
-	return (0);
-}
-
-int	ft_isdigit(int c)
-{
-	if (c >= 48 && c <= 57)
-		return (1);
-	else
-		return (0);
+	write(2, "Error\n", 6);
+	exit(1);
 }

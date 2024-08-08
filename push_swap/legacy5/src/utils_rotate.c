@@ -6,49 +6,44 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:11:40 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/06 14:56:35 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/08 16:03:42 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
-int	rotate(t_list **stack)
+static void	rotate(t_stack **stack)
 {
-	t_list	*head;
-	t_list	*tail;
+	t_stack	*last_node;
 
-	if (list_size(*stack) < 2)
-		return (-1);
-	head = *stack;
-	tail = list_last(head);
-	*stack = head->next;
-	head->next = NULL;
-	tail->next = head;
-	return (0);
+	if (!*stack || !(*stack)->next)
+		return ;
+	last_node = find_last(*stack); 
+	last_node->next = *stack;
+	*stack = (*stack)->next;
+	(*stack)->prev = NULL;
+	last_node->next->prev = last_node;
+	last_node->next->next = NULL;
+}		
+
+void	ra(t_stack **stack_a, bool print)
+{
+	rotate(stack_a);
+	if (!print)
+		write(1, "ra\n", 3);
 }
 
-int	ra(t_list **stack_a)
+void	rb(t_stack **stack_b, bool print)
 {
-	if (rotate(stack_a) == -1)
-		return (-1);
-	ft_putendl_fd("ra", 1);
-	return (0);
+	rotate(stack_b);
+	if (!print)
+		write(1, "rb\n", 3);
 }
 
-int	rb(t_list **stack_b)
+void	rr(t_stack **stack_a, t_stack **stack_b, bool print)
 {
-	if (rotate(stack_b) == -1)
-		return (-1);
-	ft_putendl_fd("rb", 1);
-	return (0);
-}
-
-int	rr(t_list **stack_a, t_list **stack_b)
-{
-	if ((list_size(*stack_a) < 2) || (list_size(*stack_b) < 2))
-		return (-1);
 	rotate(stack_a);
 	rotate(stack_b);
-	ft_putendl_fd("rr", 1);
-	return (0);
+	if (!print)
+		write(1, "rr\n", 3);
 }

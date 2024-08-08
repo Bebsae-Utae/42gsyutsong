@@ -6,51 +6,46 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:10:35 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/05 20:28:44 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/08 16:00:43 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
-int	push(t_list **stack_to, t_list **stack_from)
+static void	push(t_stack **dst, t_stack **src)
 {
-	t_list	*tmp;
-	t_list	*head_to;
-	t_list	*head_from;
+	t_stack	*push_node;
 
-	if (list_size(*stack_from) == 0)
-		return (-1);
-	head_to = *stack_to;
-	head_from = *stack_from;
-	tmp = head_from;
-	head_from = head_from->next;
-	*stack_from = head_from;
-	if (!head_to)
+	if (!*src)
+		return ;
+	push_node = *src;
+	*src = (*src)->next;
+	if (*src)
+		(*src)->prev = NULL;
+	push_node->prev = NULL;
+	if (!*dst)
 	{
-		head_to = tmp;
-		head_to->next = NULL;
-		*stack_to = head_to;
+		*dst = push_node;
+		push_node->next = NULL;
 	}
 	else
 	{
-		tmp->next = head_to;
-		*stack_to = tmp;
+		push_node->next = *dst;
+		push_node->next->prev = push_node;
+		*dst = push_node;
 	}
-	return (0);
 }
 
-int	pa(t_list **stack_a, t_list **stack_b)
+void	pa(t_stack **stack_a, t_stack **stack_b, bool print)
 {
-	if (push(stack_a, stack_b) == -1)
-		return (-1);
-	ft_putendl_fd("pa", 1);
-	return (0);
+	push(stack_a, stack_b); 
+	if (!print) 
+		write(1, "pa\n", 3);
 }
 
-int	pb(t_list **stack_a, t_list **stack_b)
+void	pb(t_stack **stack_b, t_stack **stack_a, bool print)
 {
-	if (push(stack_b, stack_a) == -1)
-		return (-1);
-	ft_putendl_fd("pb", 1);
-	return (0);
+	push(stack_b, stack_a);
+	if (!print)
+		write(1, "pb\n", 3);
 }

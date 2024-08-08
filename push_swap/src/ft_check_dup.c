@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_free.c                                       :+:      :+:    :+:   */
+/*   ft_check_dup.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yogun <yogun@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/31 12:17:58 by yogun             #+#    #+#             */
-/*   Updated: 2024/08/08 18:28:23 by yutsong          ###   ########.fr       */
+/*   Created: 2022/07/31 12:16:11 by yogun             #+#    #+#             */
+/*   Updated: 2022/08/08 20:30:29 by yogun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	free_all(t_stack **lst)
+// This function checks if the stack includes
+// any duplicate numbers.
+int	ft_checkdup(t_stack *a)
 {
-	t_stack	*temp;
+	t_stack	*tmp;
 
-	if (!lst)
-		return ;
-	while (*lst)
+	while (a)
 	{
-		temp = (*lst)->next;
-		(*lst)->nbr = 0;
-		free(*lst);
-		*lst = temp;
+		tmp = a->next;
+		while (tmp)
+		{
+			if (a->nbr == tmp->nbr)
+				return (1);
+			tmp = tmp->next;
+		}
+		a = a->next;
 	}
+	return (0);
 }

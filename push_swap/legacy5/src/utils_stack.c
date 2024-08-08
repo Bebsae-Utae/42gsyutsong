@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 16:46:30 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/06 21:19:48 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/08 14:33:46 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,19 @@ void	stack_append(t_stack **stack_a, int num)
 		node_last->next = node_now;
 		node_now->prev = node_last;
 	}
+}
+
+int	stack_size(t_stack *stack)
+{
+	int	count;
+
+	if (!stack)
+		return (0);
+	count = 0;
+	while (stack)
+	{
+		stack = stack->next;
+		count ++;
+	}
+	return (count);
 }

@@ -1,30 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_is.c                                         :+:      :+:    :+:   */
+/*   utils_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/08 18:20:22 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/08 18:25:58 by yutsong          ###   ########.fr       */
+/*   Created: 2024/08/02 16:24:37 by yutsong           #+#    #+#             */
+/*   Updated: 2024/08/08 16:37:20 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	is_space(int c)
+void	free_stack(t_stack **stack)
 {
-	c = (unsigned char)c;
-	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r'
-		|| c == ' ')
-		return (1);
-	return (0);
+	t_stack	*temp;
+	t_stack	*now;
+
+	if (!stack)
+		return ;
+	now = *stack;
+	while (now)
+	{
+		temp = now->next;
+		now->count_sort = 0;
+		free(now);
+		now = temp;
+	}
+	*stack = NULL;
 }
 
-int	ft_isdigit(int c)
+void	free_all(char **str)
 {
-	if (c >= 48 && c <= 57)
-		return (1);
-	else
-		return (0);
+	int	i;
+
+	if (!str)
+		return ;
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }

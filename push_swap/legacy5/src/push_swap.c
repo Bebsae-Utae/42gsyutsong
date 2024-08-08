@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_is.c                                         :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/08 18:20:22 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/08 18:25:58 by yutsong          ###   ########.fr       */
+/*   Created: 2024/08/02 15:00:44 by yutsong           #+#    #+#             */
+/*   Updated: 2024/08/08 15:27:07 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	is_space(int c)
+int	main(int argc, char **argv)
 {
-	c = (unsigned char)c;
-	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r'
-		|| c == ' ')
-		return (1);
-	return (0);
-}
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 
-int	ft_isdigit(int c)
-{
-	if (c >= 48 && c <= 57)
+	stack_a = NULL;
+	stack_b = NULL;
+	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
-	else
-		return (0);
+	else if (argc == 2)
+		argv = ft_split(argv[1], ' ');
+	stack_init(&stack_a, argv + 1);
+	if (!is_sorted(stack_a))
+	{
+		if (stack_size(stack_a) == 2)
+			sa(&stack_a, false);
+		else if (stack_size(stack_a) == 3)
+			sort_3(&stack_a);
+		else
+			sort_stack(&stack_a, &stack_b);
+	}
+	free_stack(&stack_a);
+	return (0);
 }

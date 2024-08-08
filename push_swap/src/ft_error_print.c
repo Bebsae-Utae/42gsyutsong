@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_free.c                                       :+:      :+:    :+:   */
+/*   ft_error_print.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yogun <yogun@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/31 12:17:58 by yogun             #+#    #+#             */
-/*   Updated: 2024/08/08 18:28:23 by yutsong          ###   ########.fr       */
+/*   Created: 2022/07/26 20:38:29 by yogun             #+#    #+#             */
+/*   Updated: 2022/08/03 20:55:11 by yogun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	free_all(t_stack **lst)
-{
-	t_stack	*temp;
-
-	if (!lst)
-		return ;
-	while (*lst)
-	{
-		temp = (*lst)->next;
-		(*lst)->nbr = 0;
-		free(*lst);
-		*lst = temp;
-	}
+//Here an error message is being printed out
+void	ft_error(void)
+{	
+	write (2, "Error\n", 6);
+	exit(1);
 }
