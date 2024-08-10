@@ -5,55 +5,55 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/10 20:07:28 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/10 20:07:56 by yutsong          ###   ########.fr       */
+/*   Created: 2024/08/08 20:09:39 by yutsong           #+#    #+#             */
+/*   Updated: 2024/08/09 14:28:21 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../includes/push_swap.h"
 
 void	sa(t_stack **a, int j)
 {
-	t_stack	*tmp;
+	t_stack	*temp;
 
-	if (!*a || !((*a)->next))
+	if (!*a || ((*a)->next))
 		return ;
-	tmp = *a;
+	temp = *a;
 	*a = (*a)->next;
-	tmp->next = (*a)->next;
-	(*a)->next = tmp;
+	temp->next = (*a)->next;
+	(*a)->next = temp;
 	if (j == 0)
 		write(1, "sa\n", 3);
 }
 
 void	sb(t_stack **b, int j)
 {
-	t_stack	*tmp;
+	t_stack *temp;
 
 	if (!*b || !((*b)->next))
 		return ;
-	tmp = *b;
+	temp = *b;
 	*b = (*b)->next;
-	tmp->next = (*b)->next;
-	(*b)->next = tmp;
+	temp->next = (*b)->next;
+	(*b)->next = temp;
 	if (j == 0)
 		write(1, "sb\n", 3);
 }
 
 void	ss(t_stack **a, t_stack **b, int j)
 {
-	t_stack	*tmp;
+	t_stack	*temp;
 
 	if (!*a || !((*a)->next) || !*b || !((*b)->next))
 		return ;
-	tmp = *a;
+	temp = *a;
 	*a = (*a)->next;
-	tmp->next = (*a)->next;
-	(*a)->next = tmp;
-	tmp = *b;
+	temp->next = (*a)->next;
+	(*a)->next = temp;
+	temp = *b;
 	*b = (*b)->next;
-	tmp->next = (*b)->next;
-	(*b)->next = tmp;
+	temp->next = (*b)->next;
+	(*b)->next = temp;
 	if (j == 0)
 		write(1, "ss\n", 3);
 }

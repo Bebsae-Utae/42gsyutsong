@@ -5,17 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/10 19:09:42 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/10 19:32:12 by yutsong          ###   ########.fr       */
+/*   Created: 2024/08/08 18:20:22 by yutsong           #+#    #+#             */
+/*   Updated: 2024/08/09 15:08:34 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../includes/push_swap.h"
 
-int	ft_isalpha(int c)
+int	is_space(int c)
 {
-	if ((c >= 58 && c <= 126) || (c >= 33 && c <= 42)
-		|| (c == 44) || (c == 46) || (c == 47))
+	c = (unsigned char)c;
+	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r'
+		|| c == ' ')
 		return (1);
 	return (0);
 }
@@ -46,16 +47,24 @@ int	is_equal(t_stack *a)
 	return (0);
 }
 
+int	ft_isalpha(int c)
+{
+	if ((c >= 58 && c <= 126) || (c >= 33 && c <= 42)
+		|| (c == 44) || (c == 46) || (c == 47))
+		return (1);
+	return (0);
+}
+
 int	is_sorted(t_stack *a)
 {
-	int	i;
+	int	idx;
 
-	i = a->nbr;
+	idx = a->nbr;
 	while (a)
 	{
-		if (i > a->nbr)
+		if (idx > a->nbr)
 			return (0);
-		i = a->nbr;
+		idx = a->nbr;
 		a = a->next;
 	}
 	return (1);

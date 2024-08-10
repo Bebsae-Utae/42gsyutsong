@@ -18,7 +18,7 @@ CFLAGS = -Wall -Wextra -Werror -Iincludes
 SRC_DIR		=	./src
 OBJ_DIR		=	./obj
 
-INC_DIR		=	./include
+INC_DIR		=	./includes
 
 SRCS		=	$(wildcard $(SRC_DIR)/*.c)
 OBJS		=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))

@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   utils_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/10 19:09:10 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/10 20:40:12 by yutsong          ###   ########.fr       */
+/*   Created: 2024/08/09 15:47:04 by yutsong           #+#    #+#             */
+/*   Updated: 2024/08/09 15:48:27 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../includes/push_swap.h"
 
-int	main(int argc, char **argv)
+t_stack	*stack_init(int num)
 {
-	t_stack	*a;
+	t_stack	*new;
 
-	a = parse_args(argc, argv);
-	if (!a || is_equal(a))
-	{
-		free_list(&a);
+	new = malloc(sizeof(t_stack));
+	if (!new)
 		print_error();
-	}
-	if (!is_sorted(a))
-		sort_big(&a);
-	free_list(&a);
-	return (0);
+	new->nbr = num;
+	new->next = NULL;
+	return (new);
 }

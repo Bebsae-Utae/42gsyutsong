@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rotate_type.c                                   :+:      :+:    :+:   */
+/*   utils_compact_type.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/07 17:04:06 by yogun             #+#    #+#             */
-/*   Updated: 2024/08/10 21:01:49 by yutsong          ###   ########.fr       */
+/*   Created: 2024/08/10 21:03:15 by yutsong           #+#    #+#             */
+/*   Updated: 2024/08/10 21:03:29 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	ft_rotate_type_ba(t_stack *a, t_stack *b)
+int	rotate_type_ba(t_stack *a, t_stack *b)
 {
 	int		i;
 	t_stack	*tmp;
@@ -34,7 +34,7 @@ int	ft_rotate_type_ba(t_stack *a, t_stack *b)
 	return (i);
 }
 
-int	ft_rotate_type_ab(t_stack *a, t_stack *b)
+int	rotate_type_ab(t_stack *a, t_stack *b)
 {
 	int		i;
 	t_stack	*tmp;
@@ -55,3 +55,4 @@ int	ft_rotate_type_ab(t_stack *a, t_stack *b)
 	}
 	return (i);
 }
+

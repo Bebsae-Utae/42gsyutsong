@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/10 19:08:34 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/10 20:22:52 by yutsong          ###   ########.fr       */
+/*   Created: 2022/07/31 12:17:58 by yogun             #+#    #+#             */
+/*   Updated: 2024/08/10 17:35:39 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../includes/push_swap.h"
 
-void	free_list(t_stack **lst)
+void	freeze(t_stack **lst)
 {
 	t_stack	*temp;
 
@@ -29,15 +29,30 @@ void	free_list(t_stack **lst)
 
 void	free_str(char **lst)
 {
-	char	*n1;
+	char	*temp;
 
 	if (!lst)
 		return ;
 	while (*lst)
 	{
-		n1 = *lst;
-		lst++;
-		free(n1);
+		temp = *lst;
+		lst ++;
+		free(temp);
 	}
 	*lst = NULL;
+}
+
+void	free_all(char **str)
+{
+	int	i;
+
+	if (!str)
+		return ;
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }

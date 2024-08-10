@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   utils_print.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/10 19:09:10 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/10 20:40:12 by yutsong          ###   ########.fr       */
+/*   Created: 2024/08/10 19:05:16 by yutsong           #+#    #+#             */
+/*   Updated: 2024/08/10 19:05:18 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	main(int argc, char **argv)
-{
-	t_stack	*a;
-
-	a = parse_args(argc, argv);
-	if (!a || is_equal(a))
-	{
-		free_list(&a);
-		print_error();
-	}
-	if (!is_sorted(a))
-		sort_big(&a);
-	free_list(&a);
-	return (0);
+void	print_error(void)
+{	
+	write (2, "Error\n", 6);
+	exit(1);
 }
