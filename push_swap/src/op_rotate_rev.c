@@ -109,3 +109,13 @@ void	rrr(t_stack **a, t_stack **b, int j)
 	tmp->next = NULL;
 	rrr_sub(b, j);
 }
+
+void	rrr_new(t_stack **a, t_stack **b, int j)
+{
+	if (!*a || !((*a)->next) || !*b || !((*b)->next))
+		return ;
+	rra(a, 1);
+	rrb(b, 1);
+	if (j == 0)
+		write(1, "rrr\n", 4);
+}
