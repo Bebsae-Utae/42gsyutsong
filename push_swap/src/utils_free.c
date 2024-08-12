@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 19:08:34 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/12 20:28:18 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/12 22:47:24 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,16 @@ void	free_str(char **lst)
 	*lst = NULL;
 }
 
+void	freeze(char **tmp)
+{
+	free_str(tmp);
+	free(tmp);
+	print_error();
+}
+
+void	freedom(t_stack *a)
+{
+	free_list(&a);
+	free(a);
+	print_error();
+}

@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 19:04:41 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/12 22:34:02 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/12 23:17:07 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,120 +38,4 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	}
 	dest[i] = '\0';
 	return (len);
-}
-
-long	ft_atoll(const char *str)
-{
-	int				mod;
-	long long int	i;
-
-	i = 0;
-	mod = 1;
-	while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\f'
-		|| *str == '\v' || *str == '\r')
-		str++;
-	if (*str == '-')
-	{
-		mod = -1;
-		str++;
-		if (!ft_isdigit(*str))
-			print_error();
-	}
-	else if (*str == '+')
-		str++;
-	while (*str)
-	{
-		if (!ft_isdigit(*str))
- 			print_error();
-		i = i * 10 + (*str - 48);
-		str++;
-	}
-	if ((mod * i) > 2147483647 || (mod * i) < -2147483648)
-		print_error();
-	return (mod * i);
-}
-
-long	ft_atoll_for_one(const char *str, char **tmp)
-{
-	int				mod;
-	long long int	i;
-
-	i = 0;
-	mod = 1;
-	while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\f'
-		|| *str == '\v' || *str == '\r')
-		str++;
-	if (*str == '-')
-	{
-		mod = -1;
-		str++;
-		if (!ft_isdigit(*str))
-		{
-			free_str(tmp);
-			free(tmp);
-			print_error();
-		}
-	}
-	else if (*str == '+')
-		str++;
-	while (*str)
-	{
-		if (!ft_isdigit(*str))
-		{
-			free_str(tmp);
-			free(tmp);
-			print_error();
-		}
-		i = i * 10 + (*str - 48);
-		str++;
-	}
-	if ((mod * i) > 2147483647 || (mod * i) < -2147483648)
-	{
-		free(tmp);
-		print_error();
-	}
-	return (mod * i);
-}
-
-long	ft_atoll_for_many(const char *str, t_stack *a)
-{
-	int				mod;
-	long long int	i;
-
-	i = 0;
-	mod = 1;
-	while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\f'
-		|| *str == '\v' || *str == '\r')
-		str++;
-	if (*str == '-')
-	{
-		mod = -1;
-		str++;
-		if (!ft_isdigit(*str))
-		{
-			free_list(&a);
-			free(a);
-			print_error();
-		}
-	}
-	else if (*str == '+')
-		str++;
-	while (*str)
-	{
-		if (!ft_isdigit(*str))
-		{
-			free_list(&a);
-			free(a);
-			print_error();
-		}
-		i = i * 10 + (*str - 48);
-		str++;
-	}
-	if ((mod * i) > 2147483647 || (mod * i) < -2147483648)
-	{
-		free_list(&a);
-		free(a);
-		print_error();
-	}
-	return (mod * i);
 }

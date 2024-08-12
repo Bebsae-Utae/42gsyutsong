@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 20:55:28 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/12 16:12:40 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/12 22:38:34 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	case_rrarb(t_stack *a, t_stack *b, int c, int code)
 	{
 		if (get_index_of_a(a, c))
 			i = ft_lstsize(a) - get_index_of_a(a, c);
-		i = get_index(b, c) + i;		
+		i = get_index(b, c) + i;
 	}
 	return (i);
 }
@@ -88,7 +88,7 @@ int	case_rarrb(t_stack *a, t_stack *b, int c, int code)
 	{
 		if (get_index(b, c))
 			i = ft_lstsize(b) - get_index(b, c);
-		i = get_index_of_a(a, c) + i;		
+		i = get_index_of_a(a, c) + i;
 	}
 	return (i);
 }

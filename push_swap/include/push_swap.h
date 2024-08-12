@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 19:05:48 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/12 22:31:28 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/12 22:53:27 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_check
 
 void		free_list(t_stack **lst);
 void		free_str(char **lst);
+void		freeze(char **tmp);
+void		freedom(t_stack *a);
 
 void		print_error(void);
 
@@ -43,13 +45,13 @@ char		**ft_split(char const *s, char c);
 
 size_t		ft_strlen(const char *str);
 size_t		ft_strlcpy(char *dest, const char *src, size_t size);
-long		ft_atoll(const char *str);
 long		ft_atoll_for_one(const char *str, char **tmp);
 long		ft_atoll_for_many(const char *str, t_stack *a);
 
 int			ft_isdigit(int c);
 int			is_equal(t_stack *a);
 int			is_sorted(t_stack *a);
+int			is_space(int c);
 
 t_stack		*stack_init(int content);
 void		stack_add_last(t_stack **stack, t_stack *stack_new);
