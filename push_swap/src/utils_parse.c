@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 20:38:52 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/10 20:39:30 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/12 14:38:16 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,3 @@ t_stack	*parse_args(int argc, char **argv)
 	}
 	return (a);
 }
-

@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 19:05:48 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/10 21:03:49 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/12 14:48:30 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,6 @@ t_stack		*stack_init(int content);
 void		stack_add_last(t_stack **stack, t_stack *stack_new);
 void		stack_add_args(char **argv, t_stack **stack_a);
 
-void		check_alpha(char **argv);
-int			check_args(char **argv);
-int			check_error(char **argv, int i, int j);
-
 int			get_index(t_stack *a, int nbr);
 int			get_index_of_a(t_stack *stack_a, int nbr_push);
 int			get_index_of_b(t_stack *stack_b, int nbr_push);
@@ -61,21 +57,20 @@ int			get_min(t_stack *a);
 t_stack		*ft_lstlast(t_stack *lst);
 int			ft_lstsize(t_stack *lst);
 
-void		rra(t_stack **a, int j);
-void		rrb(t_stack **b, int j);
-void		rrr(t_stack **a, t_stack **b, int j);
-void		rrr_sub(t_stack **b, int j);
+void		rra(t_stack **a);
+void		rrb(t_stack **b);
+void		rrr(t_stack **a, t_stack **b);
 
-void		ra(t_stack **a, int j);
-void		rb(t_stack **b, int j);
-void		rr(t_stack **a, t_stack **b, int j);
+void		ra(t_stack **a);
+void		rb(t_stack **b);
+void		rr(t_stack **a, t_stack **b);
 
-void		pa(t_stack **a, t_stack **b, int j);
-void		pb(t_stack **stack_a, t_stack **stack_b, int j);
+void		pa(t_stack **a, t_stack **b);
+void		pb(t_stack **stack_a, t_stack **stack_b);
 
-void		sa(t_stack **a, int j);
-void		sb(t_stack **b, int j);
-void		ss(t_stack **a, t_stack **b, int j);
+void		sa(t_stack **a);
+void		sb(t_stack **b);
+void		ss(t_stack **a, t_stack **b);
 
 void		sort_3(t_stack **stack_a);
 t_stack		**sort_a(t_stack **stack_a, t_stack **stack_b);

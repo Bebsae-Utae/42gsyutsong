@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 20:17:06 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/10 21:04:00 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/12 14:46:17 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@ void	sort_3(t_stack **stack_a)
 {
 	if (get_min(*stack_a) == (*stack_a)->nbr)
 	{
-		rra(stack_a, 0);
-		sa(stack_a, 0);
+		rra(stack_a);
+		sa(stack_a);
 	}
 	else if (get_max(*stack_a) == (*stack_a)->nbr)
 	{
-		ra(stack_a, 0);
+		ra(stack_a);
 		if (!is_sorted(*stack_a))
-			sa(stack_a, 0);
+			sa(stack_a);
 	}
 	else
 	{
 		if (get_index(*stack_a, get_max(*stack_a)) == 1)
-			rra(stack_a, 0);
+			rra(stack_a);
 		else
-			sa(stack_a, 0);
+			sa(stack_a);
 	}
 }
 
@@ -65,9 +65,9 @@ t_stack	*sort_b(t_stack **stack_a)
 
 	stack_b = NULL;
 	if (ft_lstsize(*stack_a) > 3 && !is_sorted(*stack_a))
-		pb(stack_a, &stack_b, 0);
+		pb(stack_a, &stack_b);
 	if (ft_lstsize(*stack_a) > 3 && !is_sorted(*stack_a))
-		pb(stack_a, &stack_b, 0);
+		pb(stack_a, &stack_b);
 	if (ft_lstsize(*stack_a) > 3 && !is_sorted(*stack_a))
 		sort_big_to_3(stack_a, &stack_b);
 	if (!is_sorted(*stack_a))
@@ -108,7 +108,7 @@ void	sort_big(t_stack **stack_a)
 
 	stack_b = NULL;
 	if (ft_lstsize(*stack_a) == 2)
-		sa(stack_a, 0);
+		sa(stack_a);
 	else
 	{
 		stack_b = sort_b(stack_a);
@@ -117,13 +117,12 @@ void	sort_big(t_stack **stack_a)
 		if (i < ft_lstsize(*stack_a) - i)
 		{
 			while ((*stack_a)->nbr != get_min(*stack_a))
-				ra(stack_a, 0);
+				ra(stack_a);
 		}
 		else
 		{
 			while ((*stack_a)->nbr != get_min(*stack_a))
-				rra(stack_a, 0);
+				rra(stack_a);
 		}			
 	}	
 }
-

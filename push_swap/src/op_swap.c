@@ -6,13 +6,13 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 20:07:28 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/10 20:07:56 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/12 14:48:16 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	sa(t_stack **a, int j)
+void	sa(t_stack **a)
 {
 	t_stack	*tmp;
 
@@ -22,11 +22,10 @@ void	sa(t_stack **a, int j)
 	*a = (*a)->next;
 	tmp->next = (*a)->next;
 	(*a)->next = tmp;
-	if (j == 0)
-		write(1, "sa\n", 3);
+	write(1, "sa\n", 3);
 }
 
-void	sb(t_stack **b, int j)
+void	sb(t_stack **b)
 {
 	t_stack	*tmp;
 
@@ -36,11 +35,10 @@ void	sb(t_stack **b, int j)
 	*b = (*b)->next;
 	tmp->next = (*b)->next;
 	(*b)->next = tmp;
-	if (j == 0)
-		write(1, "sb\n", 3);
+	write(1, "sb\n", 3);
 }
 
-void	ss(t_stack **a, t_stack **b, int j)
+void	ss(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
 
@@ -54,6 +52,5 @@ void	ss(t_stack **a, t_stack **b, int j)
 	*b = (*b)->next;
 	tmp->next = (*b)->next;
 	(*b)->next = tmp;
-	if (j == 0)
-		write(1, "ss\n", 3);
+	write(1, "ss\n", 3);
 }

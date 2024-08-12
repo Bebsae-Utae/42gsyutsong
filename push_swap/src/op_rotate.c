@@ -6,13 +6,13 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 20:04:06 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/10 20:04:42 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/12 14:47:11 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	ra(t_stack **a, int j)
+void	ra(t_stack **a)
 {
 	t_stack	*tmp;
 
@@ -23,11 +23,10 @@ void	ra(t_stack **a, int j)
 	(*a)->next = tmp;
 	*a = tmp->next;
 	tmp->next = NULL;
-	if (j == 0)
-		write(1, "ra\n", 3);
+	write(1, "ra\n", 3);
 }
 
-void	rb(t_stack **b, int j)
+void	rb(t_stack **b)
 {
 	t_stack	*tmp;
 
@@ -38,11 +37,10 @@ void	rb(t_stack **b, int j)
 	(*b)->next = tmp;
 	*b = tmp->next;
 	tmp->next = NULL;
-	if (j == 0)
-		write(1, "rb\n", 3);
+	write(1, "rb\n", 3);
 }
 
-void	rr(t_stack **a, t_stack **b, int j)
+void	rr(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
 
@@ -58,6 +56,5 @@ void	rr(t_stack **a, t_stack **b, int j)
 	(*b)->next = tmp;
 	*b = tmp->next;
 	tmp->next = NULL;
-	if (j == 0)
-		write(1, "rr\n", 3);
+	write(1, "rr\n", 3);
 }
