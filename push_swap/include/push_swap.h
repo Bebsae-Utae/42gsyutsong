@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 19:05:48 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/12 20:30:10 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/12 22:31:28 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ char		**ft_split(char const *s, char c);
 size_t		ft_strlen(const char *str);
 size_t		ft_strlcpy(char *dest, const char *src, size_t size);
 long		ft_atoll(const char *str);
+long		ft_atoll_for_one(const char *str, char **tmp);
+long		ft_atoll_for_many(const char *str, t_stack *a);
 
 int			ft_isdigit(int c);
 int			is_equal(t_stack *a);

@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 20:38:52 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/12 20:30:35 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/12 22:35:31 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_stack	*parse_check(char **argv)
 	tmp = ft_split(argv[1], 32);
 	while (tmp[i])
 	{
-		j = ft_atoll(tmp[i]);
+		j = ft_atoll_for_one(tmp[i], tmp);
 		stack_add_last(&a, stack_init(j));
 		i++;
 	}
@@ -49,7 +49,7 @@ t_stack	*parse_args(int argc, char **argv)
 	{
 		while (i < argc)
 		{
-			j = ft_atoll(argv[i]);
+			j = ft_atoll_for_many(argv[i], a);
 			stack_add_last(&a, stack_init(j));
 			i++;
 		}

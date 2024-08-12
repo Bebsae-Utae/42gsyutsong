@@ -6,13 +6,13 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 19:05:16 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/12 19:48:49 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/12 21:44:21 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	print_error(void)
+void	print_error()
 {	
 	write (2, "Error\n", 6);
 	exit(1);
