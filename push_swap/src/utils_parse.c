@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 20:38:52 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/12 14:38:16 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/12 20:30:35 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_stack	*parse_args(int argc, char **argv)
 	i = 1;
 	a = NULL;
 	if (argc < 2)
-		print_error();
+		exit_btn();
 	if (argc == 2)
 		a = parse_check(argv);
 	else

@@ -6,19 +6,11 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 19:09:42 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/10 19:32:12 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/12 15:15:11 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
-int	ft_isalpha(int c)
-{
-	if ((c >= 58 && c <= 126) || (c >= 33 && c <= 42)
-		|| (c == 44) || (c == 46) || (c == 47))
-		return (1);
-	return (0);
-}
 
 int	ft_isdigit(int c)
 {

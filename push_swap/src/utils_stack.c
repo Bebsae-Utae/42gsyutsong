@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 19:14:38 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/10 20:00:17 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/12 19:57:26 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,6 @@ t_stack	*stack_init(int content)
 	new->nbr = content;
 	new->next = NULL;
 	return (new);
-}
-
-void	stack_add_args(char **argv, t_stack **stack_a)
-{
-	long	i;
-
-	i = 1;
-	while (argv[i] != NULL)
-	{
-		stack_add_last(stack_a, stack_init(ft_atoi(argv[i])));
-		i++;
-	}
 }
 
 void	stack_add_last(t_stack **stack, t_stack *stack_new)

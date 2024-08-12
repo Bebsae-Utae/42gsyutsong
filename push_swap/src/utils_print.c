@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 19:05:16 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/10 19:05:18 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/12 19:48:49 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,10 @@
 void	print_error(void)
 {	
 	write (2, "Error\n", 6);
+	exit(1);
+}
+
+void	exit_btn(void)
+{
 	exit(1);
 }

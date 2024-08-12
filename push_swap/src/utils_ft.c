@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 19:04:41 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/12 14:38:47 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/12 20:31:40 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	return (len);
 }
 
-int	ft_atoi(const char *str)
-{
-	int	i;
-	int	minus;
-	int	inttemp;
-
-	i = 0;
-	minus = 1;
-	inttemp = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i ++;
-	if (str[i] == 45 || str[i] == 43)
-	{
-		if (str[i] == 45)
-			minus *= -1;
-		i ++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		inttemp = inttemp * 10 + (str[i] - 48);
-		i ++;
-	}
-	return (inttemp * minus);
-}
-
-int	ft_atoll(const char *str)
+long	ft_atoll(const char *str)
 {
 	int				mod;
 	long long int	i;
@@ -79,13 +54,15 @@ int	ft_atoll(const char *str)
 	{
 		mod = -1;
 		str++;
+		if (!ft_isdigit(*str))
+			print_error();
 	}
 	else if (*str == '+')
 		str++;
 	while (*str)
 	{
 		if (!ft_isdigit(*str))
-			print_error();
+ 			print_error();
 		i = i * 10 + (*str - 48);
 		str++;
 	}

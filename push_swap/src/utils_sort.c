@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 20:17:06 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/12 14:46:17 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/12 17:30:52 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	sort_3(t_stack **stack_a)
 {
 	if (get_min(*stack_a) == (*stack_a)->nbr)
 	{
-		rra(stack_a);
+		rra(stack_a, 0);
 		sa(stack_a);
 	}
 	else if (get_max(*stack_a) == (*stack_a)->nbr)
@@ -28,7 +28,7 @@ void	sort_3(t_stack **stack_a)
 	else
 	{
 		if (get_index(*stack_a, get_max(*stack_a)) == 1)
-			rra(stack_a);
+			rra(stack_a, 0);
 		else
 			sa(stack_a);
 	}
@@ -45,13 +45,13 @@ void	sort_big_to_3(t_stack **stack_a, t_stack **stack_b)
 		i = rotate_type_ab(*stack_a, *stack_b);
 		while (i >= 0)
 		{
-			if (i == case_rarb_ab(*stack_a, *stack_b, tmp->nbr))
+			if (i == case_rarb(*stack_a, *stack_b, tmp->nbr, 1))
 				i = compact_rarb(stack_a, stack_b, tmp->nbr, 'a');
-			else if (i == case_rrarrb_ab(*stack_a, *stack_b, tmp->nbr))
+			else if (i == case_rrarrb(*stack_a, *stack_b, tmp->nbr, 1))
 				i = compact_rrarrb(stack_a, stack_b, tmp->nbr, 'a');
-			else if (i == case_rarrb_ab(*stack_a, *stack_b, tmp->nbr))
+			else if (i == case_rarrb(*stack_a, *stack_b, tmp->nbr, 1))
 				i = compact_rarrb(stack_a, stack_b, tmp->nbr, 'a');
-			else if (i == case_rrarb_ab(*stack_a, *stack_b, tmp->nbr))
+			else if (i == case_rrarb(*stack_a, *stack_b, tmp->nbr, 1))
 				i = compact_rrarb(stack_a, stack_b, tmp->nbr, 'a');
 			else
 				tmp = tmp->next;
@@ -65,11 +65,11 @@ t_stack	*sort_b(t_stack **stack_a)
 
 	stack_b = NULL;
 	if (ft_lstsize(*stack_a) > 3 && !is_sorted(*stack_a))
+	{
 		pb(stack_a, &stack_b);
-	if (ft_lstsize(*stack_a) > 3 && !is_sorted(*stack_a))
 		pb(stack_a, &stack_b);
-	if (ft_lstsize(*stack_a) > 3 && !is_sorted(*stack_a))
 		sort_big_to_3(stack_a, &stack_b);
+	}
 	if (!is_sorted(*stack_a))
 		sort_3(stack_a);
 	return (stack_b);
@@ -86,13 +86,13 @@ t_stack	**sort_a(t_stack **stack_a, t_stack **stack_b)
 		i = rotate_type_ba(*stack_a, *stack_b);
 		while (i >= 0)
 		{
-			if (i == case_rarb_ba(*stack_a, *stack_b, tmp->nbr))
+			if (i == case_rarb(*stack_a, *stack_b, tmp->nbr, 2))
 				i = compact_rarb(stack_a, stack_b, tmp->nbr, 'b');
-			else if (i == case_rarrb_ba(*stack_a, *stack_b, tmp->nbr))
+			else if (i == case_rarrb(*stack_a, *stack_b, tmp->nbr, 2))
 				i = compact_rarrb(stack_a, stack_b, tmp->nbr, 'b');
-			else if (i == case_rrarrb_ba(*stack_a, *stack_b, tmp->nbr))
+			else if (i == case_rrarrb(*stack_a, *stack_b, tmp->nbr, 2))
 				i = compact_rrarrb(stack_a, stack_b, tmp->nbr, 'b');
-			else if (i == case_rrarb_ba(*stack_a, *stack_b, tmp->nbr))
+			else if (i == case_rrarb(*stack_a, *stack_b, tmp->nbr, 2))
 				i = compact_rrarb(stack_a, stack_b, tmp->nbr, 'b');
 			else
 				tmp = tmp->next;
@@ -122,7 +122,7 @@ void	sort_big(t_stack **stack_a)
 		else
 		{
 			while ((*stack_a)->nbr != get_min(*stack_a))
-				rra(stack_a);
+				rra(stack_a, 0);
 		}			
 	}	
 }
