@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 19:05:48 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/13 16:37:21 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/13 17:27:33 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,79 +32,82 @@ typedef struct s_check
 	char	**temp;
 }	t_check;
 
-void		parse_sup(char **argv, t_stack **a, int i);
+long long int	convert_to_long(const char *str, int mod,
+					t_stack *a, char **tmp);
 
-void		free_list(t_stack **lst);
-void		free_str(char **lst);
-void		freeze(char **tmp);
-void		freezer(char **tmp);
+void			parse_sup(char **argv, t_stack **a, int i);
 
-void		freedom(t_stack *a, char **tmp);
-long		ft_atoll_for_many(const char *str, t_stack *a, char **tmp);
-long		ft_atoll2(const char *str, t_stack *a, int mod, char **tmp);
+void			free_list(t_stack **lst);
+void			free_str(char **lst);
+void			freeze(char **tmp);
+void			freezer(char **tmp);
 
-void		print_error(void);
+void			freedom(t_stack *a, char **tmp);
+long			ft_atoll_for_many(const char *str, t_stack *a, char **tmp);
+long			ft_atoll2(const char *str, t_stack *a, int mod, char **tmp);
 
-void		exit_btn(void);
+void			print_error(void);
 
-char		**ft_split(char const *s, char c);
+void			exit_btn(void);
 
-size_t		ft_strlen(const char *str);
-size_t		ft_strlcpy(char *dest, const char *src, size_t size);
-long		ft_atoll_for_one(const char *str, char **tmp);
+char			**ft_split(char const *s, char c);
 
-int			ft_isdigit(int c);
-int			is_equal(t_stack *a);
-int			is_sorted(t_stack *a);
-int			is_space(int c);
+size_t			ft_strlen(const char *str);
+size_t			ft_strlcpy(char *dest, const char *src, size_t size);
+long			ft_atoll_for_one(const char *str, char **tmp);
 
-t_stack		*stack_init(int content);
-void		stack_add_last(t_stack **stack, t_stack *stack_new);
+int				ft_isdigit(int c);
+int				is_equal(t_stack *a);
+int				is_sorted(t_stack *a);
+int				is_space(int c);
 
-int			get_index(t_stack *a, int nbr);
-int			get_index_of_a(t_stack *stack_a, int nbr_push);
-int			get_index_of_b(t_stack *stack_b, int nbr_push);
-int			get_max(t_stack *a);
-int			get_min(t_stack *a);
+t_stack			*stack_init(int content);
+void			stack_add_last(t_stack **stack, t_stack *stack_new);
 
-t_stack		*ft_lstlast(t_stack *lst);
-int			ft_lstsize(t_stack *lst);
+int				get_index(t_stack *a, int nbr);
+int				get_index_of_a(t_stack *stack_a, int nbr_push);
+int				get_index_of_b(t_stack *stack_b, int nbr_push);
+int				get_max(t_stack *a);
+int				get_min(t_stack *a);
 
-void		rra(t_stack **a, int code);
-void		rrb(t_stack **b, int code);
-void		rrr(t_stack **a, t_stack **b);
+t_stack			*ft_lstlast(t_stack *lst);
+int				ft_lstsize(t_stack *lst);
 
-void		ra(t_stack **a);
-void		rb(t_stack **b);
-void		rr(t_stack **a, t_stack **b);
+void			rra(t_stack **a, int code);
+void			rrb(t_stack **b, int code);
+void			rrr(t_stack **a, t_stack **b);
 
-void		pa(t_stack **a, t_stack **b);
-void		pb(t_stack **stack_a, t_stack **stack_b);
+void			ra(t_stack **a);
+void			rb(t_stack **b);
+void			rr(t_stack **a, t_stack **b);
 
-void		sa(t_stack **a);
-void		sb(t_stack **b);
-void		ss(t_stack **a, t_stack **b);
+void			pa(t_stack **a, t_stack **b);
+void			pb(t_stack **stack_a, t_stack **stack_b);
 
-void		sort_3(t_stack **stack_a);
-t_stack		**sort_a(t_stack **stack_a, t_stack **stack_b);
-t_stack		*sort_b(t_stack **stack_a);
-void		sort_big(t_stack **stack_a);
-void		sort_big_to_3(t_stack **stack_a, t_stack **stack_b);
+void			sa(t_stack **a);
+void			sb(t_stack **b);
+void			ss(t_stack **a, t_stack **b);
 
-t_stack		*parse_args(int argc, char **argv);
-t_stack		*parse_check(char **argv);
+void			sort_3(t_stack **stack_a);
+t_stack			**sort_a(t_stack **stack_a, t_stack **stack_b);
+t_stack			*sort_b(t_stack **stack_a);
+void			sort_big(t_stack **stack_a);
+void			sort_big_to_3(t_stack **stack_a, t_stack **stack_b);
 
-int			compact_rarb(t_stack **a, t_stack **b, int c, char s);
-int			compact_rrarrb(t_stack **a, t_stack **b, int c, char s);
-int			compact_rrarb(t_stack **a, t_stack **b, int c, char s);
-int			compact_rarrb(t_stack **a, t_stack **b, int c, char s);
+t_stack			*parse_args(int argc, char **argv);
+t_stack			*parse_check(char **argv);
 
-int			case_rarb(t_stack *a, t_stack *b, int c, int code);
-int			case_rrarrb(t_stack *a, t_stack *b, int c, int code);
-int			case_rrarb(t_stack *a, t_stack *b, int c, int code);
-int			case_rarrb(t_stack *a, t_stack *b, int c, int code);
+int				compact_rarb(t_stack **a, t_stack **b, int c, char s);
+int				compact_rrarrb(t_stack **a, t_stack **b, int c, char s);
+int				compact_rrarb(t_stack **a, t_stack **b, int c, char s);
+int				compact_rarrb(t_stack **a, t_stack **b, int c, char s);
 
-int			rotate_type_ba(t_stack *a, t_stack *b);
-int			rotate_type_ab(t_stack *a, t_stack *b);
+int				case_rarb(t_stack *a, t_stack *b, int c, int code);
+int				case_rrarrb(t_stack *a, t_stack *b, int c, int code);
+int				case_rrarb(t_stack *a, t_stack *b, int c, int code);
+int				case_rarrb(t_stack *a, t_stack *b, int c, int code);
+
+int				rotate_type_ba(t_stack *a, t_stack *b);
+int				rotate_type_ab(t_stack *a, t_stack *b);
 
 #endif
