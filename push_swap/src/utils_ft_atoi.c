@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 23:16:59 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/12 23:17:13 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/13 16:19:05 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ long	ft_atoll_for_one(const char *str, char **tmp)
 	return (result);
 }
 
-long	ft_atoll2(const char *str, t_stack *a, int mod, long long int i)
+long	ft_atoll2(const char *str, t_stack *a, int mod, long long int i, char **tmp)
 {
 	while (is_space(*str))
 		str++;
@@ -62,23 +62,23 @@ long	ft_atoll2(const char *str, t_stack *a, int mod, long long int i)
 		mod = -1;
 		str++;
 		if (!ft_isdigit(*str))
-			freedom(a);
+			freedom(a, tmp);
 	}
 	else if (*str == '+')
 		str ++;
 	while (*str)
 	{
 		if (!ft_isdigit(*str))
-			freedom(a);
+			freedom(a, tmp);
 		i = i * 10 + (*str - 48);
 		str++;
 	}
 	if ((mod * i) > 2147483647 || (mod * i) < -2147483648)
-		freedom(a);
+		freedom(a, tmp);
 	return (mod * i);
 }
 
-long	ft_atoll_for_many(const char *str, t_stack *a)
+long	ft_atoll_for_many(const char *str, t_stack *a, char **tmp)
 {
 	int				mod;
 	long long int	i;
@@ -86,6 +86,6 @@ long	ft_atoll_for_many(const char *str, t_stack *a)
 
 	i = 0;
 	mod = 1;
-	result = ft_atoll2(str, a, mod, i);
+	result = ft_atoll2(str, a, mod, i, tmp);
 	return (result);
 }
