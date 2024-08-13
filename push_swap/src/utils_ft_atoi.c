@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 23:16:59 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/13 17:27:59 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/13 19:06:27 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ long	ft_atoll2(const char *str, t_stack *a, int mod, char **tmp)
 			freedom(a, tmp);
 	}
 	result = convert_to_long(str, mod, a, tmp);
-	if (result == -1 || result > 2147483647 || result < -2147483648)
+	if (result > 2147483647 || result < -2147483648)
 		freedom(a, tmp);
 	return ((long)result);
 }
