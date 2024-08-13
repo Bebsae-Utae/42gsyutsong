@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 20:38:52 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/13 16:18:35 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/13 16:39:09 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ t_stack	*parse_args(int argc, char **argv)
 {
 	t_stack	*a;
 	int		i;
-	int		j;
-	char	**tmp;
-	int		k;
 
 	i = 1;
 	a = NULL;
@@ -51,18 +48,26 @@ t_stack	*parse_args(int argc, char **argv)
 	{
 		while (i < argc)
 		{
-				tmp = ft_split(argv[i], 32);
-				k = 0;
-				while (tmp[k])
-				{
-					j = ft_atoll_for_many(tmp[k], a, tmp);
-					stack_add_last(&a, stack_init(j));
-					k ++;
-				}
-				free_str(tmp);
-				free(tmp);
+			parse_sup(argv, &a, i);
 			i++;
 		}
 	}
 	return (a);
+}
+
+void	parse_sup(char **argv, t_stack **a, int i)
+{
+	char	**tmp;
+	int		k;
+	int		j;
+
+	tmp = ft_split(argv[i], 32);
+	k = 0;
+	while (tmp[k])
+	{
+		j = ft_atoll_for_many(tmp[k], *a, tmp);
+		stack_add_last(a, stack_init(j));
+		k ++;
+	}
+	freezer(tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 19:05:48 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/13 16:18:49 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/13 16:37:21 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,16 @@ typedef struct s_check
 	char	**temp;
 }	t_check;
 
+void		parse_sup(char **argv, t_stack **a, int i);
+
 void		free_list(t_stack **lst);
 void		free_str(char **lst);
 void		freeze(char **tmp);
+void		freezer(char **tmp);
 
 void		freedom(t_stack *a, char **tmp);
-long		ft_atoll2(const char *str, t_stack *a, int mod, long long int i, char **tmp);
 long		ft_atoll_for_many(const char *str, t_stack *a, char **tmp);
+long		ft_atoll2(const char *str, t_stack *a, int mod, char **tmp);
 
 void		print_error(void);
 

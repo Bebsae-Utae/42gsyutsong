@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 23:16:59 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/13 16:19:05 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/08/13 16:22:42 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,11 @@ long	ft_atoll_for_one(const char *str, char **tmp)
 	return (result);
 }
 
-long	ft_atoll2(const char *str, t_stack *a, int mod, long long int i, char **tmp)
+long	ft_atoll2(const char *str, t_stack *a, int mod, char **tmp)
 {
+	long long int	i;
+
+	i = 0;
 	while (is_space(*str))
 		str++;
 	if (*str == '-')
@@ -81,11 +84,9 @@ long	ft_atoll2(const char *str, t_stack *a, int mod, long long int i, char **tmp
 long	ft_atoll_for_many(const char *str, t_stack *a, char **tmp)
 {
 	int				mod;
-	long long int	i;
 	int				result;
 
-	i = 0;
 	mod = 1;
-	result = ft_atoll2(str, a, mod, i, tmp);
+	result = ft_atoll2(str, a, mod, tmp);
 	return (result);
 }
