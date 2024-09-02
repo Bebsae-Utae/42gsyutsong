@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:33:46 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/30 16:09:29 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/02 15:38:28 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,25 @@ int	init_philo(t_philo **philo, t_input *input)
 		(*philo)[idx].time_last_dining = 0;
 		(*philo)[idx].time_start_thread = 0;
 		(*philo)[idx].input = input;
+		idx ++;
+	}
+	return (0);
+}
+
+int	init_mutex(t_input *input)
+{
+	int	idx;
+
+	if (pthread_mutex_init(&(input->mutex_print), NULL))
+		return (1);
+	input->mutex_fork = malloc(sizeof(pthread_mutex_t) * input->count_philo);
+	if (!(input->mutex_fork))
+		return (1);
+	idx = 0;
+	while (idx < input->count_philo)
+	{
+		if (pthread_mutex_init(&(input->mutex_fork[idx]), NULL))
+			return (1);
 		idx ++;
 	}
 	return (0);

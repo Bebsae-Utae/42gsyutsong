@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:36:14 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/30 16:03:11 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/02 15:59:51 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,18 @@ int	main(int argc, char *argv[])
 	int		error_code;
 
 	if (argc != 5 && argc != 6)
-		// 에러
+		killer(0);
 	memset(&input, 0, sizeof(t_input));
-	
+	error_code = init_argv(&input, argc, argv);
+	if (error_code)
+		killer(1);
+	error_code = init_philo(&philo, &input);
+	if (error_code)
+		killer(2);
+	error_code = philo_start(&input, philo);
+	if (error_code)
+		killer(3);
+	return(0);
 }
 
 void	*philo_thread(void *argv)
@@ -75,14 +84,18 @@ int	philo_action(t_input *input, t_philo *philo)
 {
 	pthread_mutex_lock(&(input->mutex_fork[philo->right_fork]));
 	// 포크 집어들었다 출력
+	printer(input, philo->id_philo, "has taken a fork", philo);
 	if (input->count_philo != 1)
 	{
 		pthread_mutex_lock(&(input->mutex_fork[philo->right_fork]));
 		// 포크 집어들었다 출력
+		printer(input, philo->id_philo, "has taken a fork", philo);
 		// 먹고있다 출력
-		// tlrks philo->time_last_dining =
+		printer(input, philo->id_philo, "is eating", philo);
+		philo->time_last_dining = time_get();
 		philo->count_dining = philo->count_dining + 1;
 		//
+		time_wasted((long long)input->time_dining, input);
 		pthread_mutex_unlock(&(input->mutex_fork[philo->right_fork])); 
 	}
 	pthread_mutex_unlock(&(input->mutex_fork[philo->left_fork]));
@@ -116,7 +129,58 @@ void	checker(t_input *input, t_philo *philo)
 	}
 }
 
-void	printer()
+void	printer(t_input *input, t_philo *philo, int id, char *msg)
 {
-	printf("Start \n");
+	long long	now;
+
+	now = time_get();
+	if (now == -1)
+		return (-1);
+	pthread_mutex_lock(&(input->mutex_print));
+	if (!(input->monitor))
+		printf("%lld %d %s \n", now - philo->time_start_thread, id + 1, msg);
+	pthread_mutex_unlock(&(input->mutex_print));
+	return (0);
+}
+
+void	killer(int code)
+{
+	if (code == 0)
+		exit(0);
+	else if (code == 1)
+	{
+		// 메모리 free
+		exit(0);
+	}
+	else if (code == 2)
+	{
+		// 메모리 free1
+		// 메모리 free2
+		exit(0);
+	}
+}
+
+void	time_wasted(long long wait_time, t_input *input)
+{
+	long long	start;
+	long long	now;
+
+	start = time_get();
+	while (!(input->monitor))
+	{
+		now = time_get();
+		if ((now - start) >= wait_time)
+			break ;
+		usleep(10);
+	}
+}
+
+long	time_get(void)
+{
+	struct timeval	time;
+	long			result;
+
+	gettimeofday(&time, NULL);
+	result = ((size_t)time.tv_sec * 1000) + ((size_t)time.tv_usec / 1000);
+	return (result);
 }

@@ -6,13 +6,16 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:17:16 by yutsong           #+#    #+#             */
-/*   Updated: 2024/08/30 15:21:58 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/02 16:01:02 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+#include <memory.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include <pthread.h>
 #include <sys/time.h>
 #include <stdio.h>
@@ -44,5 +47,8 @@ typedef struct s_philo
 	t_input		*input;
 }	t_philo;
 
+int	init_argv(t_input	*input, int argc, char **argv);
+int	init_philo(t_philo **philo, t_input *input);
+int	init_mutex(t_input *input);
 
 #endif
