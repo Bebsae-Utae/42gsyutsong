@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:36:14 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/02 15:59:51 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/11 20:03:44 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ void	*philo_thread(void *argv)
 			usleep(1);
 		philo_action(input, philo);
 		if (input->count_philo == 1)
-			philo_stay((long long)input->time_sleep, input);
+			time_wasted((long long)input->time_sleep, input);
 		if (input->time_dining == philo->count_dining)
 		{
 			input->monitor ++;
 			break ;
 		}
 		print_status(input, philo->id_philo, "is sleeping");
-		time_spend((long long)input->time_sleep, input);
+		time_wasted((long long)input->time_sleep, input);
 		print_status(input, philo->id_philo, "is thinking");
 	}
 	return (0);
@@ -68,7 +68,7 @@ int	philo_start(t_input *input, t_philo *philo)
 	idx = 0;
 	while (idx < input->count_philo)
 	{
-		philo[idx].time_last_dining = get_time();
+		philo[idx].time_last_dining = time_get();
 		if (pthread_create(&(philo[idx].id_thread), NULL, philo_thread, &(philo[idx])))
 			return (1);
 		idx ++;
@@ -84,14 +84,14 @@ int	philo_action(t_input *input, t_philo *philo)
 {
 	pthread_mutex_lock(&(input->mutex_fork[philo->right_fork]));
 	// 포크 집어들었다 출력
-	printer(input, philo->id_philo, "has taken a fork", philo);
+	printer(input, philo, philo->id_philo, "has taken a fork");
 	if (input->count_philo != 1)
 	{
 		pthread_mutex_lock(&(input->mutex_fork[philo->right_fork]));
 		// 포크 집어들었다 출력
-		printer(input, philo->id_philo, "has taken a fork", philo);
+		printer(input, philo, philo->id_philo, "has taken a fork");
 		// 먹고있다 출력
-		printer(input, philo->id_philo, "is eating", philo);
+		printer(input, philo, philo->id_philo, "is eating");
 		philo->time_last_dining = time_get();
 		philo->count_dining = philo->count_dining + 1;
 		//
@@ -129,7 +129,7 @@ void	checker(t_input *input, t_philo *philo)
 	}
 }
 
-void	printer(t_input *input, t_philo *philo, int id, char *msg)
+int	printer(t_input *input, t_philo *philo, int id, char *msg)
 {
 	long long	now;
 

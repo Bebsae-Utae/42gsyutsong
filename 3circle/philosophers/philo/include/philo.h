@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:17:16 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/11 15:52:03 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/11 19:59:53 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,19 @@ typedef struct s_philo
 	t_input		*input;
 }	t_philo;
 
-int	init_argv(t_input	*input, int argc, char **argv);
-int	init_philo(t_philo **philo, t_input *input);
-int	init_mutex(t_input *input);
+int		init_argv(t_input	*input, int argc, char **argv);
+int		init_philo(t_philo **philo, t_input *input);
+int		init_mutex(t_input *input);
 
 void	*philo_thread(void *argv);
-int	philo_start(t_input *input, t_philo *philo);
-int	philo_action(t_input *input, t_philo *philo);
+int		philo_start(t_input *input, t_philo *philo);
+int		philo_action(t_input *input, t_philo *philo);
 void	checker(t_input *input, t_philo *philo);
-void	printer(t_input *input, t_philo *philo, int id, char *msg);
+int		printer(t_input *input, t_philo *philo, int id, char *msg);
 void	killer(int code);
 void	time_wasted(long long wait_time, t_input *input);
 long	time_get(void);
 
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
 
 #endif
