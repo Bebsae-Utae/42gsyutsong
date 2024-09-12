@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:36:14 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/11 20:17:49 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/12 15:46:07 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,21 @@ int	main(int argc, char *argv[])
 	int		error_code;
 
 	if (argc != 5 && argc != 6)
-		killer(0);
+		killer(0, &input);
 	memset(&input, 0, sizeof(t_input));
 	error_code = init_argv(&input, argc, argv);
 	if (error_code)
-		killer(1);
+		killer(1, &input);
+	error_code = init_mutex(&input);
+	if (error_code)
+		killer(1, &input);
 	error_code = init_philo(&philo, &input);
 	if (error_code)
-		killer(2);
+		killer(2, &input);
+	// 아래 함수에서 코어 덤프
 	error_code = philo_start(&input, philo);
 	if (error_code)
-		killer(3);
+		killer(3, &input);
 	return(0);
 }
 
@@ -54,11 +58,16 @@ void	*philo_thread(void *argv)
 			input->monitor ++;
 			break ;
 		}
-		print_status(input, philo->id_philo, "is sleeping");
+		printer(input, philo, philo->id_philo, "is sleeping");
 		time_wasted((long long)input->time_sleep, input);
-		print_status(input, philo->id_philo, "is thinking");
+		printer(input, philo, philo->id_philo, "is thinking");
 	}
 	return (0);
+}
+
+void	philo_sleep(t_input *input)
+{
+	time_wasted((long long)input->time_sleep, input);
 }
 
 int	philo_start(t_input *input, t_philo *philo)
@@ -68,11 +77,14 @@ int	philo_start(t_input *input, t_philo *philo)
 	idx = 0;
 	while (idx < input->count_philo)
 	{
-		philo[idx].time_last_dining = time_get();
+		philo[idx].time_start_thread = time_get();
 		if (pthread_create(&(philo[idx].id_thread), NULL, philo_thread, &(philo[idx])))
+		{
 			return (1);
+		}
 		idx ++;
 	}
+	// 아래 함수에서 코어 덤프
 	checker(input, philo);
 	idx = 0;
 	while (idx < input->count_philo)
@@ -82,7 +94,7 @@ int	philo_start(t_input *input, t_philo *philo)
 
 int	philo_action(t_input *input, t_philo *philo)
 {
-	pthread_mutex_lock(&(input->mutex_fork[philo->right_fork]));
+	pthread_mutex_lock(&(input->mutex_fork[philo->left_fork]));
 	// 포크 집어들었다 출력
 	printer(input, philo, philo->id_philo, "has taken a fork");
 	if (input->count_philo != 1)
@@ -117,9 +129,10 @@ void	checker(t_input *input, t_philo *philo)
 		idx = 0;
 		while (idx < input->count_philo)
 		{
-			//현재시간 받기 now =
-			if ((now - philo[idx].time_last_dining) >= input->time_life)
+			now = time_get();
+			if ((now - philo[idx].time_start_thread) >= input->time_life)
 			{
+				printf("%lld\n", now - philo[idx].time_start_thread);
 				// 죽었음 출력
 				input->monitor = 1;
 				break ;
@@ -138,23 +151,27 @@ int	printer(t_input *input, t_philo *philo, int id, char *msg)
 		return (-1);
 	pthread_mutex_lock(&(input->mutex_print));
 	if (!(input->monitor))
+	{
 		printf("%lld %d %s \n", now - philo->time_start_thread, id + 1, msg);
+	}
 	pthread_mutex_unlock(&(input->mutex_print));
 	return (0);
 }
 
-void	killer(int code)
+void	killer(int code, t_input *input)
 {
 	if (code == 0)
 		exit(0);
 	else if (code == 1)
 	{
 		// 메모리 free
+		free(input);
 		exit(0);
 	}
 	else if (code == 2)
 	{
 		// 메모리 free1
+		free(input);
 		// 메모리 free2
 		exit(0);
 	}

@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:17:16 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/11 19:59:53 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/12 15:13:45 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef struct s_philo
 	int			count_dining;
 	int			left_fork;
 	int			right_fork;
-	long		time_last_dining;
-	long		time_start_thread;
+	long long	time_last_dining;
+	long long	time_start_thread;
 	pthread_t	id_thread;
 	t_input		*input;
 }	t_philo;
@@ -56,9 +56,10 @@ int		philo_start(t_input *input, t_philo *philo);
 int		philo_action(t_input *input, t_philo *philo);
 void	checker(t_input *input, t_philo *philo);
 int		printer(t_input *input, t_philo *philo, int id, char *msg);
-void	killer(int code);
+void	killer(int code, t_input *input);
 void	time_wasted(long long wait_time, t_input *input);
 long	time_get(void);
+void	philo_sleep(t_input *input);
 
 int		ft_atoi(const char *str);
 
