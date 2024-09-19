@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:17:16 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/19 15:31:41 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/19 19:29:04 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_input
 	pthread_mutex_t	*mutex_fork;
 	pthread_mutex_t	mutex_print;
 	pthread_mutex_t	mutex_monitor;
-	pthread_mutex_t	mutex_count_dining;
+	// pthread_mutex_t	mutex_count_dining;
 	pthread_mutex_t	mutex_time_last_dining;
 }	t_input;
 
@@ -55,7 +55,9 @@ void	*philo_thread(void *argv);
 int		philo_start(t_input *input, t_philo *philo);
 int		philo_action(t_input *input, t_philo *philo);
 
+long long	last_eat(t_input *input, t_philo *philo);
 void	checker(t_input *input, t_philo *philo);
+int		checking(t_input *input);
 int		printer(t_input *input, t_philo *philo, int id, char *msg);
 void	killer(t_input *input, t_philo *philo, int error_code);
 

@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:33:46 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/19 12:50:51 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/19 17:28:51 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	init_philo(t_philo **philo, t_input *input)
 		return (1);
 	while (idx < input->count_philo)
 	{
-		(*philo)[idx].id_philo = idx + 1;
+		(*philo)[idx].id_philo = idx;
 		(*philo)[idx].count_dining = 0;
 		(*philo)[idx].left_fork = idx;
 		(*philo)[idx].right_fork = (idx + 1) % input->count_philo;

@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:32:13 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/19 16:06:49 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/19 19:53:17 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ int	philo_start(t_input *input, t_philo *philo)
 int	philo_action(t_input *input, t_philo *philo)
 {
 	pthread_mutex_lock(&(input->mutex_fork[philo->left_fork]));
-	printer(input, philo, philo->id_philo, "has taken a fork");
+	printer(input, philo, philo->id_philo, "has taken a left fork");
 	if (input->count_philo != 1)
 	{
 		pthread_mutex_lock(&(input->mutex_fork[philo->right_fork]));
-		printer(input, philo, philo->id_philo, "has taken a fork");
+		printer(input, philo, philo->id_philo, "has taken a right fork");
 		printer(input, philo, philo->id_philo, "is eating");
 		philo->time_last_dining = time_get();
 		philo->count_dining ++;
