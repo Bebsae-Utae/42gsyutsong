@@ -6,19 +6,19 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:17:16 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/12 15:13:45 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/19 15:31:41 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <memory.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <pthread.h>
-#include <sys/time.h>
-#include <stdio.h>
+# include <memory.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <pthread.h>
+# include <sys/time.h>
+# include <stdio.h>
 
 typedef struct s_input
 {
@@ -54,12 +54,13 @@ int		init_mutex(t_input *input);
 void	*philo_thread(void *argv);
 int		philo_start(t_input *input, t_philo *philo);
 int		philo_action(t_input *input, t_philo *philo);
+
 void	checker(t_input *input, t_philo *philo);
 int		printer(t_input *input, t_philo *philo, int id, char *msg);
-void	killer(int code, t_input *input);
+void	killer(t_input *input, t_philo *philo, int error_code);
+
 void	time_wasted(long long wait_time, t_input *input);
 long	time_get(void);
-void	philo_sleep(t_input *input);
 
 int		ft_atoi(const char *str);
 

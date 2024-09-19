@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   util_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:33:46 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/12 15:46:50 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/19 12:50:51 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	init_argv(t_input	*input, int argc, char **argv)
 	input->time_dining = ft_atoi(argv[3]);
 	input->time_sleep = ft_atoi(argv[4]);
 	input->monitor = 0;
-	if (input->count_philo <= 0 || input->time_life < 0 || input->time_dining < 0 || input->time_sleep < 0)
+	if (input->count_philo <= 0 || input->time_life < 0
+		|| input->time_dining < 0 || input->time_sleep < 0)
 		return (1);
 	if (argc == 6)
 	{
@@ -27,8 +28,6 @@ int	init_argv(t_input	*input, int argc, char **argv)
 		if (input->count_all_dining <= 0)
 			return (1);
 	}
-	else
-		input->count_all_dining = 0;
 	return (0);
 }
 
