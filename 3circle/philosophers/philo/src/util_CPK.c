@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:37:19 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/19 20:01:43 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/20 14:50:09 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	checking(t_input *input)
 	}
 }
 
-long long last_eat(t_input *input, t_philo *philo)
+long last_eat(t_input *input, t_philo *philo)
 {
-    long long	last_eat_time;
+    long	last_eat_time;
 
     pthread_mutex_lock(&(input->mutex_time_last_dining));
     last_eat_time = philo->time_last_dining;
@@ -48,11 +48,11 @@ void	change_monitor(t_input *input)
 void	checker(t_input *input, t_philo *philo)
 {
 	int			idx;
-	long long	now;
+	long		now;
 
 	while (!checking(input))
 	{
-		if ((input->count_all_dining != 0)
+		if ((input->time_dining != 0)
 			&& (input->count_philo == input->count_all_dining))
 		{
 			change_monitor(input);
@@ -67,7 +67,7 @@ void	checker(t_input *input, t_philo *philo)
 			// if (now - philo->time_last_dining >= input->time_life)
 			{
 				printf("die\n");
-				change_monitor(input);
+				// change_monitor(input);
 				// input->monitor = 1;
 				break ;
 			}
@@ -78,7 +78,7 @@ void	checker(t_input *input, t_philo *philo)
 
 int	printer(t_input *input, t_philo *philo, int id, char *msg)
 {
-	long long	now;
+	long	now;
 
 	now = time_get();
 	if (now == -1)
@@ -87,9 +87,9 @@ int	printer(t_input *input, t_philo *philo, int id, char *msg)
 	if (!(input->monitor))
 	{
 		if (((id + 1) % 2) == 0)
-			printf("\033[31m%lldsec %dth %s\033[0m\n", now - philo->time_start_thread, id + 1, msg);
+			printf("\033[31m%ldsec %dth %s %dtimes\033[0m\n", now - philo->time_start_thread, id + 1, msg, philo->count_dining);
 		else
-			printf("\033[32m%lldsec %dth %s\033[0m\n", now - philo->time_start_thread, id + 1, msg);
+			printf("\033[32m%ldsec %dth %s %dtimes\033[0m\n", now - philo->time_start_thread, id + 1, msg, philo->count_dining);
 	}
 	pthread_mutex_unlock(&(input->mutex_print));
 	return (0);

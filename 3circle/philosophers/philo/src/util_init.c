@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:33:46 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/19 17:28:51 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/20 16:09:51 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	init_argv(t_input	*input, int argc, char **argv)
 	return (0);
 }
 
+// 철학자와 philo 구조체가 1:1로 대응
 int	init_philo(t_philo **philo, t_input *input)
 {
 	int	idx;
@@ -42,6 +43,8 @@ int	init_philo(t_philo **philo, t_input *input)
 	while (idx < input->count_philo)
 	{
 		(*philo)[idx].id_philo = idx;
+		printf("%d\n", (*philo)[idx].id_philo);
+		printf("%d\n", idx);
 		(*philo)[idx].count_dining = 0;
 		(*philo)[idx].left_fork = idx;
 		(*philo)[idx].right_fork = (idx + 1) % input->count_philo;

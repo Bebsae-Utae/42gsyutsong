@@ -6,16 +6,16 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:36:54 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/19 16:07:33 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/20 14:49:20 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	time_wasted(long long wait_time, t_input *input)
+void	time_wasted(long wait_time, t_input *input)
 {
-	long long	start_time;
-	long long	end_time;
+	long	start_time;
+	long	end_time;
 
 	start_time = time_get();
 	end_time = start_time + wait_time;
