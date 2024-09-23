@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:36:54 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/23 15:23:15 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/23 20:24:24 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,3 @@
 // 	result = (current_time.tv_sec * 1000LL) + (current_time.tv_usec / 1000);
 // 	return (result);
 // }
-
-long long	get_time(void)
-{
-	struct timeval tv;
-
-	if (gettimeofday(&tv, NULL) == -1)
-		return (-1);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
-}

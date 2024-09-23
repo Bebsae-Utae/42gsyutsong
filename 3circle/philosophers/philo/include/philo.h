@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:17:16 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/23 15:49:01 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/23 19:53:46 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ typedef struct s_input
 	pthread_mutex_t	mutex_print;
 	t_philo			*philosophers;
 	// pthread_mutex_t	mutex_monitor;
-	// pthread_mutex_t	mutex_count_dining;
+	pthread_mutex_t	mutex_dining;
+	pthread_mutex_t mutex_time;
 	// pthread_mutex_t	mutex_time_last_dining;
 }	t_input;
 

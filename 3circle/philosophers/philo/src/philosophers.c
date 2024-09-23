@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:36:14 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/23 15:54:24 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/23 20:33:47 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	main(int argc, char *argv[])
 		cleanup(&input);
 		return (error_code);
 	}
+
 	error_code = start_simul(&input);
 	if (error_code)
 	{

@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:17:15 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/23 15:59:21 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/23 20:37:58 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,36 +20,59 @@ void	cleanup(t_input *input)
 	{
 		idx = 0;
 		while (idx < input->count_philo)
+		{
 			pthread_join(input->philosophers[idx].id_thread, NULL);
+			idx ++;
+		}
 		free(input->philosophers);
 	}
 	if (input->mutex_fork)
 	{
 		idx = 0;
 		while (idx < input->count_philo)
+		{
 			pthread_mutex_destroy(&input->mutex_fork[idx]);
+			idx ++;
+		}
 		free(input->mutex_fork);
 	}
 	pthread_mutex_destroy(&input->mutex_print);
+	pthread_mutex_destroy(&input->mutex_dining);
+	pthread_mutex_destroy(&input->mutex_time);
 }
 
 int	start_simul(t_input *input)
 {
 	int	idx;
+	int jdx;
 	pthread_t monitor;
 
 	input->time_start = get_time();
 	if (pthread_create(&monitor, NULL, monitoring_routine, input))
+	{
+		printf("Failed create monitor thread\n");
+		cleanup(input);
 		return (1);
+	}
 	idx = 0;
 	while (idx < input->count_philo)
 	{
 		if (pthread_create(&input->philosophers[idx].id_thread, NULL, philosopher_routine, &input->philosophers[idx]))
 		{
-			input->who_died = 1;
+			printf("Failed to create philo thread\n");
+			cleanup(input);
+			// input->who_died = 1;
+			// break ;
 			return (1);
 		}
 		idx ++;
+	}
+	jdx = 0;
+	while (jdx < idx)
+	{
+		pthread_join(input->philosophers[jdx].id_thread, NULL);
+		printf("%d %d\n", jdx, idx);
+		jdx ++;
 	}
 	pthread_join(monitor, NULL);
 	return (0);
@@ -72,12 +95,14 @@ void	*monitoring_routine(void *arg)
 			{
 				print_status(&input->philosophers[idx], "died");
 				input->who_died = 1;
-				break ;
+				printf("Philosopher %d died, setting who_died flag.\n", idx);
+				// break ;
+				return (NULL);
 			}
 			idx ++;
 		}
-		if (input->who_died)
-			break ;
+		// if (input->who_died)
+		// 	break ;
 		usleep(1000);
 
 	}
