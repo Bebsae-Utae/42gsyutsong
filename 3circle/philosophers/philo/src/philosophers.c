@@ -6,44 +6,37 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:36:14 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/24 14:18:31 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/24 20:11:07 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../include/philo.h"
 
-int	main(int argc, char *argv[])
+int	main(int argc, char **argv)
 {
 	t_input	input;
-	int		error_code;
+	t_philo	*philo;
 
 	if (argc != 5 && argc != 6)
 	{
 		printf("Invalid arguments\n");
 		return (1);
 	}
-	memset(&input, 0, sizeof(t_input));
-	error_code = init_data(&input, argc, argv);
-	if (error_code)
+	input = init_input(argv);
+	if (!input.meals || !input.count_philo || init_mutexes(&input))
+		return (1);
+	philo = init_philo(&input);
+	if (!philo || pthread_mutex_lock(&input.mutex_data) || \
+		philo_create(&philo))
+		return (1);
+	pthread_mutex_unlock(&input.mutex_data);
+	if (monitor(&input, &philo))
 	{
-		printf("Init failed\n");
-		return (error_code);
+		killer_philo(&philo, -1, input.count_philo, input.count_philo);
+		killer_mutexes(&input);
+		return (3);
 	}
-	error_code = create_philo(&input);
-	if (error_code)
-	{
-		printf("Failed to create philo\n");
-		cleanup(&input);
-		return (error_code);
-	}
-
-	error_code = start_simul(&input);
-	if (error_code)
-	{
-		printf("Simul failed\n");
-		cleanup(&input);
-		return (error_code);
-	}
-	cleanup(&input);
+	killer_philo(&philo, -1, input.count_philo, input.count_philo);
+	killer_mutexes(&input);
 	return (0);
 }

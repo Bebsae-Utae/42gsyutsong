@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_ft.c                                          :+:      :+:    :+:   */
+/*   lib.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/29 14:16:18 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/19 15:00:09 by yutsong          ###   ########.fr       */
+/*   Created: 2022/04/02 11:44:50 by tclement          #+#    #+#             */
+/*   Updated: 2024/09/24 18:41:45 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include <philo.h>
 
-int	ft_atoi(const char *str)
+
+long int	ft_atol(char *str)
 {
-	int	i;
-	int	minus;
-	int	inttemp;
+	long int		i;
+	long int		nb;
 
 	i = 0;
-	minus = 1;
-	inttemp = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i ++;
-	if (str[i] == 45 || str[i] == 43)
-	{
-		if (str[i] == 45)
-			minus *= -1;
-		i ++;
-	}
+	nb = 0;
+	if (str[i] == '\0' || str[i] < '0' || str[i] > '9')
+		return (-1);
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		inttemp = inttemp * 10 + (str[i] - 48);
-		i ++;
+		nb = nb * 10 + str[i] - '0';
+		i++;
 	}
-	return (inttemp * minus);
+	if (str[i] != '\0' || i > 10)
+		return (-1);
+	return (nb);
 }
