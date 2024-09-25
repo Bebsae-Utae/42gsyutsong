@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:50:18 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/24 19:50:50 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/25 16:13:26 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	killer_philo(t_philo **philo, int forknb, int eatnb, int philonb)
 {
 	int	idx;
 
-	idx = 0;
 	if (forknb == -1)
 		forknb = (*philo)->input->count_philo;
 	philo_join(philo, philonb);
@@ -41,4 +40,10 @@ void	killer_philo(t_philo **philo, int forknb, int eatnb, int philonb)
 		idx++;
 	}
 	free(*philo);
+}
+
+void	killer_set(t_philo **philo, t_input *input)
+{
+	killer_philo(philo, -1, input->count_philo, input->count_philo);
+	killer_mutexes(input);
 }

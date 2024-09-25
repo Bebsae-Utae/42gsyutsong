@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:54:07 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/24 20:08:05 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/25 15:49:44 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 
 void	*philo_routine(t_philo *philo)
 {
-	int	idx;
-	int	jdx;
+	int	cnt_dining;
+	int	cnt_fork;
 
-	idx = 0;
-	pthread_mutex_lock(&philo->input->mutex_data);
-	pthread_mutex_unlock(&philo->input->mutex_data);
-	if (philo->id_philo% 2 == 0)
+	cnt_dining = 0;
+	if (philo->id_philo % 2 == 0)
 		time_sleep(&philo, 1);
 	while (!check_dining(&philo) && philo->input->meals != 0
 		&& !check_died(&philo))
 	{
 		if (philo->input->count_philo != 1)
 			mutex_printer(&philo, "%lld %d is thinking\n");
-		jdx = mutex_take_fork(&philo);
-		philo_eat(&philo, jdx);
-		if (jdx > 0)
+		cnt_fork = mutex_take_fork(&philo);
+		philo_eat(&philo, cnt_fork);
+		if (cnt_fork > 1)
 			pthread_mutex_unlock((philo)->mutex_right_fork);
-		if (philo->input->meals > 0 && (idx + 1) == philo->input->meals && jdx == 2)
+		if (philo->input->meals > 0
+			&& (cnt_dining + 1) == philo->input->meals && cnt_fork == 2)
 			mutex_done_dining(&philo);
-		philo_sleep(&philo, jdx);
-		idx++;
-		while (!check_died(&philo) && (philo->input->count_philo == 1 && idx))
-			usleep(150);
+		philo_sleep(&philo, cnt_fork);
+		cnt_dining++;
+		while (!check_died(&philo)
+			&& (philo->input->count_philo == 1 && cnt_dining))
+			usleep(100);
 	}
 	return (philo);
 }
@@ -51,7 +51,6 @@ int	philo_create(t_philo **philo)
 	while (idx < (*philo)->input->count_philo)
 	{
 		if (pthread_create(&(*philo)[idx].philo_thread, NULL, \
-			// (t_routine)philo_routine, &(*philo)[idx]))
 			(void *(*)(void *))philo_routine, &(*philo)[idx]))
 		{
 			mutex_count_philo(philo);

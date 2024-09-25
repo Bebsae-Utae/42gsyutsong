@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:17:16 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/24 20:10:46 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/25 13:59:33 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ t_philo		*init_philo(t_input *input);
 int			*parser(char **argv, int *args);
 
 void		killer_mutexes(t_input *input);
+void		killer_set(t_philo **philo, t_input *input);
 void		killer_philo(t_philo **philo, int forknb, int eatnb, int philonb);
 
 int			monitor(t_input *input, t_philo **philo);

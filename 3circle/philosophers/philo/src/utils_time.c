@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:57:27 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/24 20:08:11 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/25 16:12:03 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ long long	time_get(void)
 	unsigned long	time;
 
 	if (gettimeofday(&now, NULL) != 0)
-	{
-		printf("Error in ft_gettime\n");
 		return (-1);
-	}
 	time = ((now.tv_sec * 1000) + (now.tv_usec / 1000));
 	return (time);
 }

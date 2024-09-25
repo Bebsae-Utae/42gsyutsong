@@ -6,13 +6,12 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:48:34 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/24 19:51:30 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/09/25 16:14:32 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-// ft_atol은 없어도 되지 않나 ?
 int	*parser(char **argv, int *args)
 {
 	int	idx;
@@ -21,7 +20,6 @@ int	*parser(char **argv, int *args)
 	while (argv[idx + 1])
 	{
 		args[idx] = ft_atoi(argv[idx + 1]);
-		// if (args[idx] == -1 || args[idx] != ft_atol(argv[idx + 1]))
 		if (args[idx] == -1)
 			return (NULL);
 		idx++;
@@ -64,35 +62,31 @@ int	init_mutexes(t_input *input)
 {
 	pthread_mutex_init(&input->mutex_data, NULL);
 	if (pthread_mutex_init(&input->mutex_died, NULL))
-{
+	{
 		pthread_mutex_destroy(&input->mutex_data);
 		return (1);
-}
+	}
 	else if (pthread_mutex_init(&input->mutex_dining, NULL))
 	{
 		pthread_mutex_destroy(&input->mutex_data);
 		pthread_mutex_destroy(&input->mutex_died);
 		return (1);
-}
+	}
 	else if (pthread_mutex_init(&input->mutex_print, NULL))
 	{
 		pthread_mutex_destroy(&input->mutex_data);
 		pthread_mutex_destroy(&input->mutex_died);
 		pthread_mutex_destroy(&input->mutex_dining);
 		return (1);
-}
+	}
 	return (0);
 }
 
 t_input	init_input(char **argv)
 {
-	t_input input;
-	
+	t_input	input;
+
 	if (parser(argv, (int *)&input) == NULL)
-	{
-		printf("Invalid arguments.\n");
-		printf("Put 4 or 5 arguments(positive ints).\n");
 		input.meals = 0;
-	}
 	return (input);
 }
