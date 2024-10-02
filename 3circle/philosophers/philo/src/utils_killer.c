@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:50:18 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/25 16:13:26 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/10/02 11:57:47 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,21 @@ void	killer_mutexes(t_input *input)
 	pthread_mutex_destroy(&input->mutex_dining);
 }
 
-void	killer_philo(t_philo **philo, int forknb, int eatnb, int philonb)
+void	killer_philo(t_philo **philo, int fork, int dining, int cnt_philo)
 {
 	int	idx;
 
-	if (forknb == -1)
-		forknb = (*philo)->input->count_philo;
-	philo_join(philo, philonb);
+	if (fork == -1)
+		fork = (*philo)->input->count_philo;
+	philo_join(philo, cnt_philo);
 	idx = 0;
-	while (idx < eatnb)
+	while (idx < dining)
 	{
 		pthread_mutex_destroy(&(*philo)[idx].mutex_start_dining);
 		idx++;
 	}
 	idx = 0;
-	while (idx < forknb)
+	while (idx < fork)
 	{
 		pthread_mutex_destroy(&(*philo)[idx].mutex_left_fork);
 		idx++;

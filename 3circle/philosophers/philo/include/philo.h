@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:17:16 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/25 13:59:33 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/10/02 13:47:07 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,9 @@ typedef struct s_philo
 	t_input			*input;
 }	t_philo;
 
-t_input		init_input(char **argv);
+int			init_input(t_input *input, int argc, char **argv);
 int			init_mutexes(t_input *input);
 t_philo		*init_philo(t_input *input);
-int			*parser(char **argv, int *args);
 
 void		killer_mutexes(t_input *input);
 void		killer_set(t_philo **philo, t_input *input);
@@ -60,6 +59,7 @@ int			monitor(t_input *input, t_philo **philo);
 int			check_died(t_philo **philo);
 int			check_time_dining(t_philo **philo, int idx, int id);
 int			check_dining(t_philo **philo);
+int			check_parse(t_input *input, int argc);
 
 void		mutex_done_dining(t_philo **philo);
 void		mutex_count_philo(t_philo **philo);

@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:08:58 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/24 20:09:27 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/10/02 12:30:30 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,19 @@ int	check_dining(t_philo **philo)
 
 int	check_time_dining(t_philo **philo, int idx, int id)
 {
+	long long	times;
+
+	times = time_get() - (*philo)->input->start_time;
 	if (idx == 0)
 	{
 		pthread_mutex_lock(&(*philo)->mutex_start_dining);
-		(*philo)->start_dining = (time_get() - (*philo)->input->start_time);
+		(*philo)->start_dining = times;
 		pthread_mutex_unlock(&(*philo)->mutex_start_dining);
 	}
 	if (idx == 1)
 	{
 		pthread_mutex_lock(&(*philo)[id].mutex_start_dining);
-		if ((time_get() - (*philo)->input->start_time)
-			- (*philo)[id].start_dining >= (*philo)->input->time_life)
+		if (times - (*philo)[id].start_dining >= (*philo)->input->time_life)
 		{
 			pthread_mutex_unlock(&(*philo)[id].mutex_start_dining);
 			return (1);
@@ -62,12 +64,12 @@ int	monitor(t_input *input, t_philo **philo)
 {
 	int	idx;
 
-	while (!check_died(philo) && \
-		!check_dining(philo) && input->meals != 0)
+	while (!check_died(philo)
+		&& !check_dining(philo) && input->meals != 0)
 	{
 		idx = 0;
-		while (idx < input->count_philo && !check_died(philo) && \
-			!check_dining(philo))
+		while (idx < input->count_philo && !check_died(philo)
+			&& !check_dining(philo))
 		{
 			if (check_time_dining(philo, 1, idx))
 			{

@@ -6,30 +6,11 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:48:34 by yutsong           #+#    #+#             */
-/*   Updated: 2024/09/25 16:14:32 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/10/02 13:47:28 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-
-int	*parser(char **argv, int *args)
-{
-	int	idx;
-
-	idx = 0;
-	while (argv[idx + 1])
-	{
-		args[idx] = ft_atoi(argv[idx + 1]);
-		if (args[idx] == -1)
-			return (NULL);
-		idx++;
-	}
-	if (args[0] == 0)
-		return (NULL);
-	if (argv[5] == NULL)
-		args[4] = -1;
-	return (args);
-}
 
 t_philo	*init_philo(t_input *input)
 {
@@ -37,7 +18,6 @@ t_philo	*init_philo(t_input *input)
 	t_philo	*philo;
 
 	idx = 0;
-	input->done_dining = 0;
 	philo = malloc(input->count_philo * sizeof (*philo));
 	while (idx < input->count_philo && philo)
 	{
@@ -82,11 +62,34 @@ int	init_mutexes(t_input *input)
 	return (0);
 }
 
-t_input	init_input(char **argv)
+int	init_input(t_input *input, int argc, char **argv)
 {
-	t_input	input;
+	input->count_philo = ft_atoi(argv[1]);
+	input->time_life = ft_atoi(argv[2]);
+	input->time_dining = ft_atoi(argv[3]);
+	input->time_sleep = ft_atoi(argv[4]);
+	if (argc == 6)
+		input->meals = ft_atoi(argv[5]);
+	else
+		input->meals = -1;
+	if (!check_parse(input, argc))
+		return (1);
+	if (init_mutexes(input) || !input->count_philo)
+		return (1);
+	return (0);
+}
 
-	if (parser(argv, (int *)&input) == NULL)
-		input.meals = 0;
-	return (input);
+int	check_parse(t_input *input, int argc)
+{
+	if (input->count_philo <= 0)
+		return (0);
+	if (input->time_life <= 0)
+		return (0);
+	if (input->time_dining <= 0)
+		return (0);
+	if (input->time_sleep <= 0)
+		return (0);
+	if (argc == 6 && input->meals <= 0)
+		return (0);
+	return (1);
 }
