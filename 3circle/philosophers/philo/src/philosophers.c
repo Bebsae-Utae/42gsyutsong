@@ -21,12 +21,17 @@ int	main(int argc, char **argv)
 		return (1);
 	if (init_input(&input, argc, argv))
 		return (1);
-	philo = init_philo(&input);
-	if (!philo)
+	if (init_phil(&input, &philo))
 	{
-		killer_mutexes(&input); // 체크 필요
+		killer_mutexes(&input);
 		return (1);
 	}
+	// philo = init_philo(&input);
+	// if (!philo)
+	// {
+	// 	killer_mutexes(&input); // 체크 필요
+	// 	return (1);
+	// }
 	pthread_mutex_lock(&input.mutex_data);
 	if (philo_create(&philo))
 	{

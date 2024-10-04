@@ -12,23 +12,22 @@
 
 #include "../include/philo.h"
 
-t_philo	*init_philo(t_input *input)
+int	init_phil(t_input *input, t_**philo)
 {
-	int		idx;
-	t_philo	*philo;
+	int	idx;
 
-	philo = malloc(input->count_philo * sizeof (*philo));
+	*philo = malloc(input->count_philo * sizeof (*philo));
 	if (!philo)
-		return (NULL);
+		return (1);
 	idx = 0;
-	while (idx < input->count_philo && philo)
+	while (idx < input->count_philo)
 	{
 		philo[idx].id_philo = idx + 1;
 		philo[idx].start_dining = 0;
 		if (pthread_mutex_init(&philo[idx].mutex_left_fork, NULL))
 		{
 			killer_philo(&philo, idx, 0, 0);
-			return (NULL);
+			return (1);
 		}
 		if (idx != input->count_philo - 1)
 			philo[idx].mutex_right_fork = &philo[idx + 1].mutex_left_fork;
@@ -37,8 +36,36 @@ t_philo	*init_philo(t_input *input)
 		philo[idx].input = input;
 		idx++;
 	}
-	return (philo);
+	return (0);
 }
+
+// t_philo	*init_philo(t_input *input)
+// {
+// 	int		idx;
+// 	t_philo	*philo;
+
+// 	philo = malloc(input->count_philo * sizeof (*philo));
+// 	if (!philo)
+// 		return (NULL);
+// 	idx = 0;
+// 	while (idx < input->count_philo)
+// 	{
+// 		philo[idx].id_philo = idx + 1;
+// 		philo[idx].start_dining = 0;
+// 		if (pthread_mutex_init(&philo[idx].mutex_left_fork, NULL))
+// 		{
+// 			killer_philo(&philo, idx, 0, 0);
+// 			return (NULL);
+// 		}
+// 		if (idx != input->count_philo - 1)
+// 			philo[idx].mutex_right_fork = &philo[idx + 1].mutex_left_fork;
+// 		else
+// 			philo[idx].mutex_right_fork = &philo[0].mutex_left_fork;
+// 		philo[idx].input = input;
+// 		idx++;
+// 	}
+// 	return (philo);
+// }
 
 int	init_mutexes(t_input *input)
 {

@@ -49,7 +49,8 @@ typedef struct s_philo
 
 int			init_input(t_input *input, int argc, char **argv);
 int			init_mutexes(t_input *input);
-t_philo		*init_philo(t_input *input);
+// t_philo		*init_philo(t_input *input);
+int	init_phil(t_input *input, t_**philo);
 
 void		killer_mutexes(t_input *input);
 void		killer_set(t_philo **philo, t_input *input);
