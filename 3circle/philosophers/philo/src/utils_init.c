@@ -17,8 +17,10 @@ t_philo	*init_philo(t_input *input)
 	int		idx;
 	t_philo	*philo;
 
-	idx = 0;
 	philo = malloc(input->count_philo * sizeof (*philo));
+	if (!philo)
+		return (NULL);
+	idx = 0;
 	while (idx < input->count_philo && philo)
 	{
 		philo[idx].id_philo = idx + 1;

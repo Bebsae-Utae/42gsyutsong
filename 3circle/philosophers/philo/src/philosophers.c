@@ -23,7 +23,10 @@ int	main(int argc, char **argv)
 		return (1);
 	philo = init_philo(&input);
 	if (!philo)
+	{
+		killer_mutexes(&input); // 체크 필요
 		return (1);
+	}
 	pthread_mutex_lock(&input.mutex_data);
 	if (philo_create(&philo))
 	{
