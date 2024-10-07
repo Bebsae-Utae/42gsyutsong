@@ -6,19 +6,20 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:48:34 by yutsong           #+#    #+#             */
-/*   Updated: 2024/10/02 13:47:28 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/10/07 13:54:26 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int	init_phil(t_input *input, t_**philo)
+t_philo	*init_philo(t_input *input)
 {
-	int	idx;
+	int		idx;
+	t_philo	*philo;
 
-	*philo = malloc(input->count_philo * sizeof (*philo));
+	philo = malloc(input->count_philo * sizeof (*philo));
 	if (!philo)
-		return (1);
+		return (NULL);
 	idx = 0;
 	while (idx < input->count_philo)
 	{
@@ -27,7 +28,7 @@ int	init_phil(t_input *input, t_**philo)
 		if (pthread_mutex_init(&philo[idx].mutex_left_fork, NULL))
 		{
 			killer_philo(&philo, idx, 0, 0);
-			return (1);
+			return (NULL);
 		}
 		if (idx != input->count_philo - 1)
 			philo[idx].mutex_right_fork = &philo[idx + 1].mutex_left_fork;
@@ -36,36 +37,8 @@ int	init_phil(t_input *input, t_**philo)
 		philo[idx].input = input;
 		idx++;
 	}
-	return (0);
+	return (philo);
 }
-
-// t_philo	*init_philo(t_input *input)
-// {
-// 	int		idx;
-// 	t_philo	*philo;
-
-// 	philo = malloc(input->count_philo * sizeof (*philo));
-// 	if (!philo)
-// 		return (NULL);
-// 	idx = 0;
-// 	while (idx < input->count_philo)
-// 	{
-// 		philo[idx].id_philo = idx + 1;
-// 		philo[idx].start_dining = 0;
-// 		if (pthread_mutex_init(&philo[idx].mutex_left_fork, NULL))
-// 		{
-// 			killer_philo(&philo, idx, 0, 0);
-// 			return (NULL);
-// 		}
-// 		if (idx != input->count_philo - 1)
-// 			philo[idx].mutex_right_fork = &philo[idx + 1].mutex_left_fork;
-// 		else
-// 			philo[idx].mutex_right_fork = &philo[0].mutex_left_fork;
-// 		philo[idx].input = input;
-// 		idx++;
-// 	}
-// 	return (philo);
-// }
 
 int	init_mutexes(t_input *input)
 {

@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:36:14 by yutsong           #+#    #+#             */
-/*   Updated: 2024/10/02 13:34:28 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/10/07 13:54:35 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,12 @@ int	main(int argc, char **argv)
 		return (1);
 	if (init_input(&input, argc, argv))
 		return (1);
-	if (init_phil(&input, &philo))
+	philo = init_philo(&input);
+	if (!philo)
 	{
 		killer_mutexes(&input);
 		return (1);
 	}
-	// philo = init_philo(&input);
-	// if (!philo)
-	// {
-	// 	killer_mutexes(&input); // 체크 필요
-	// 	return (1);
-	// }
 	pthread_mutex_lock(&input.mutex_data);
 	if (philo_create(&philo))
 	{
