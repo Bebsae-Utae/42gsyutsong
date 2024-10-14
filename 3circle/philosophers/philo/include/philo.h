@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:17:16 by yutsong           #+#    #+#             */
-/*   Updated: 2024/10/07 13:54:17 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/10/14 18:54:00 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_philo
 
 int			init_input(t_input *input, int argc, char **argv);
 int			init_mutexes(t_input *input);
-t_philo		*init_philo(t_input *input);
+int			init_philo(t_input *input, t_philo **philo);
 
 void		killer_mutexes(t_input *input);
 void		killer_set(t_philo **philo, t_input *input);

@@ -6,38 +6,37 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:48:34 by yutsong           #+#    #+#             */
-/*   Updated: 2024/10/07 13:54:26 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/10/14 18:54:08 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-t_philo	*init_philo(t_input *input)
+int	init_philo(t_input *input, t_philo **philo)
 {
-	int		idx;
-	t_philo	*philo;
+	int	idx;
 
-	philo = malloc(input->count_philo * sizeof (*philo));
-	if (!philo)
-		return (NULL);
+	*philo = malloc(input->count_philo * sizeof(t_philo));
+	if (!*philo)
+		return (0);
 	idx = 0;
 	while (idx < input->count_philo)
 	{
-		philo[idx].id_philo = idx + 1;
-		philo[idx].start_dining = 0;
-		if (pthread_mutex_init(&philo[idx].mutex_left_fork, NULL))
+		(*philo)[idx].id_philo = idx + 1;
+		(*philo)[idx].start_dining = 0;
+		if (pthread_mutex_init(&(*philo)[idx].mutex_left_fork, NULL))
 		{
-			killer_philo(&philo, idx, 0, 0);
-			return (NULL);
+			killer_philo(philo, idx, 0, 0);
+			return (0);
 		}
 		if (idx != input->count_philo - 1)
-			philo[idx].mutex_right_fork = &philo[idx + 1].mutex_left_fork;
+			(*philo)[idx].mutex_right_fork = &(*philo)[idx + 1].mutex_left_fork;
 		else
-			philo[idx].mutex_right_fork = &philo[0].mutex_left_fork;
-		philo[idx].input = input;
-		idx++;
+			(*philo)[idx].mutex_right_fork = &(*philo)[0].mutex_left_fork;
+		(*philo)[idx].input = input;
+		idx ++;
 	}
-	return (philo);
+	return (1);
 }
 
 int	init_mutexes(t_input *input)

@@ -6,7 +6,7 @@
 /*   By: yutsong <yutsong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:36:14 by yutsong           #+#    #+#             */
-/*   Updated: 2024/10/07 13:54:35 by yutsong          ###   ########.fr       */
+/*   Updated: 2024/10/14 18:58:08 by yutsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,9 @@ int	main(int argc, char **argv)
 	t_input	input;
 	t_philo	*philo;
 
-	if (argc != 5 && argc != 6)
+	if ((argc != 5 && argc != 6) || init_input(&input, argc, argv))
 		return (1);
-	if (init_input(&input, argc, argv))
-		return (1);
-	philo = init_philo(&input);
-	if (!philo)
+	if (!init_philo(&input, &philo))
 	{
 		killer_mutexes(&input);
 		return (1);
