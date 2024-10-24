@@ -27,8 +27,8 @@ void	time_sleep(t_philo **philo, long long msec)
 {
 	long long	timestamp;
 
-	timestamp = time_get();
+	timestamp = time_get() + msec;
 	while (!check_died(philo) && !check_dining(philo)
-		&& time_get() - timestamp < msec)
+		&& time_get() < timestamp)
 		usleep(150);
 }
