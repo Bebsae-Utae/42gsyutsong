@@ -21,9 +21,18 @@ int	main(int argc, char **argv)
 		return (1);
 	if (!init_philo(&input, &philo))
 		return (kill_and_cleanup(&input, NULL, 1));
+	// {
+	// 	killer_mutexes(&input);
+	// 	return (1);
+	// }
 	pthread_mutex_lock(&input.mutex_data);
 	if (philo_create(&philo))
 		return (kill_and_cleanup(&input, philo, 1));
+	// {
+	// 	free(philo);
+	// 	killer_mutexes(&input);
+	// 	return (1);
+	// }
 	pthread_mutex_unlock(&input.mutex_data);
 	if (monitor(&input, &philo))
 	{
