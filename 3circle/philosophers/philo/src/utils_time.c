@@ -15,11 +15,11 @@
 long long	time_get(void)
 {
 	struct timeval	now;
-	unsigned long	time;
+	long long	time;
 
 	if (gettimeofday(&now, NULL) != 0)
 		return (-1);
-	time = ((now.tv_sec * 1000) + (now.tv_usec / 1000));
+	time = ((now.tv_sec * 1000LL) + (now.tv_usec / 1000));
 	return (time);
 }
 

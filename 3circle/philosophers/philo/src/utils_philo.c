@@ -50,8 +50,8 @@ int	philo_create(t_philo **philo)
 	(*philo)->input->died = 0;
 	while (idx < (*philo)->input->count_philo)
 	{
-		if (pthread_create(&(*philo)[idx].philo_thread, NULL, \
-			(void *(*)(void *))philo_routine, &(*philo)[idx]))
+		if (pthread_create(&(*philo)[idx].philo_thread, NULL, 
+			(void *)philo_routine, &(*philo)[idx]))
 		{
 			mutex_count_philo(philo);
 			killer_philo(philo, -1, idx, idx);
